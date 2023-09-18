@@ -6,13 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} | Ford Para Todos</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
 
     <link href="{% static 'libs/bootstrap-5.3.2-dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/globals.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     {% block styles %}{% endblock %}
 </head>
 
 <body>
+    {% include 'layout/navbar.html' %}
     {% block content %}{% endblock %}
 
     <script src="{% static 'libs/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js' %}"></script>
