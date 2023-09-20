@@ -1,46 +1,30 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg">
-    <main class="container-fluid">
+    <main class="container-fluid px-5 py-2">
         <a class="navbar-brand d-flex flex-column align-items-center justify-content-center"
             href="{% url 'portal.index' %}">
             <img src="{% static 'img/logo.png' %}" alt="Logo" width="124" height="48">
             <h5 class="nav__title">Para todos.</h5>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegação">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content"
+            aria-controls="navbar-content" aria-expanded="false" aria-label="Alternar navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
+        <div class="collapse navbar-collapse" id="navbar-content">
+            <ul class="navbar-nav ms-lg-5 me-auto mb-2 mb-lg-0">
+                <form id="form-search" class="d-flex align-items-center my-sm-3" role="search" style="width: 20rem;">
+                    <label class="mx-2" for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+                    <input id="search" class="form-control rounded-pill py-2 px-4" type="search"
+                        placeholder="Pesquise seu carro aqui" aria-label="Pesquisar">
+                </form>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <button type="button" class="btn btn-primary">Fale conosco</button>
+            <button type="button" class="btn btn-outline-primary rounded-circle ms-5 me-4 my-1" id="configuration">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <button type="button" class="btn btn-outline-primary rounded-circle" id="user-login">
+                <i class="fa-solid fa-user"></i>
+            </button>
         </div>
-        
     </main>
 </nav>
