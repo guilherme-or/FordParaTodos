@@ -6,4 +6,15 @@ def index(request):
 
 
 def catalogo(request):
-    return render(request, "portal/catalogo.html")
+    carros = [
+        {
+            "modelo": "Bronco Sport",
+            "ano": 2024,
+        },
+        {
+            "modelo": "Ranger",
+            "ano": 2024,
+        },
+    ]
+
+    return render(request, "portal/catalogo.html", {"carros": carros})

@@ -1,11 +1,114 @@
 {% extends "layout/base.html" %}
-
+{% load static %}
 {% block title %}Catálogo{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/catalogo.css' %}">
+{% endblock %}
 
 {% block content %}
 <main class="container-fluid">
-    <h1>Catálogo de carros</h1>
-    <p>Lorem ipsum dolor sit amet.</p>
-    <a href="{% url 'portal.index' %}">Página inicial</a>
+
+    <div class="row">
+        <div class="col-4 sidebar">
+            <nav id="navbar-example3">
+                <button class="btn btn-primary button_voltar" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><label
+                        class="mx-2" for="return"><i class="fa-regular fa-square-caret-left"
+                            style="color: #ffffff;"></i></label>Voltar</button>
+
+                <nav class="nav nav-pills flex-column">
+                    <div class="type">
+                        <a class="nav-link item_categoria" href="#categoria">CATEGORIA</a>
+                        <nav class="nav nav-pills flex-column">
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="firstCheckbox">
+                                <label class="form-check-label item_checkbox" for="firstCheckbox">Picape</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="secondCheckbox">
+                                <label class="form-check-label item_checkbox" for="secondCheckbox">SUV</label>
+                            </li>
+                        </nav>
+                    </div>
+
+                    <div class="type">
+                        <a class="nav-link item_categoria" href="#categoria">CAPACIDADE</a>
+                        <nav class="nav nav-pills flex-column">
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="firstCheckbox">
+                                <label class="form-check-label item_checkbox" for="firstCheckbox">2-4 lugares</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="secondCheckbox">
+                                <label class="form-check-label item_checkbox" for="secondCheckbox">2-5 lugares</label>
+                            </li>
+                        </nav>
+                    </div>
+
+
+
+                </nav>
+            </nav>
+        </div>
+
+        <div class="col-8 catalogo">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true"
+                class="scrollspy-example-2" tabindex="0">
+                <div class="row p-3 mb-2 bg-light text-white">
+                    {% for carro in carros %}
+
+                    <section class="card">
+                        <main class="card-body">
+                            <h3>{{ carro.modelo }}</h3>
+                            <h5 class="text-muted">{{ carro.ano }}</h5>
+                            <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="card-img-top"
+                                alt="Imagem {{ carro.modelo }}">
+                        </main>
+                    </section>
+
+                    {% endfor %}
+                    <!-- <div class="card card_style">
+                        <div class="card-body">
+                            <h5 class="card-title text_modelo_carro"></h5>
+                            <p class="card-text subtext_primeiro">Limited Edition</p>
+                        </div>
+
+                        <div class="div_img">
+                            <img src="{% static 'img/ranger.png' %}" class="card-img-top" alt="Imagem Bronco Sport">
+                        </div>
+
+                        <div class="card-body d-flex justify-content-evenly">
+                            <p class="card-text subtext_segundo" style="margin-top: 0px;">3.0 V6 Diesel 4WD AT 2024</p>
+                            <a href="#" class="btn btn-primary button_escolher">Escolher</a>
+                        </div>
+                    </div>
+
+                    <div class="card card_style">
+                        <div class="card-body">
+                            <h5 class="card-title text_modelo_carro"></h5>
+                            <p class="card-text subtext_primeiro">Wildtrak Edition</p>
+                        </div>
+
+                        <div class="div_img">
+                            <img src="{% static 'img/bronco.png' %}" class="card-img-top" alt="Imagem Bronco Sport">
+                        </div>
+
+                        <div class="card-body d-flex justify-content-evenly">
+                            <p class="card-text subtext_segundo">2.0L EcoBOOST</p>
+                            <a href="#" class="btn btn-primary button_escolher">Escolher</a>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+
+
+
 </main>
 {% endblock %}
