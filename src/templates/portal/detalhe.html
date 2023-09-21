@@ -1,0 +1,11 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}Catálogo{% endblock %}
+
+{% block content %}
+<main class="container-fluid">
+    <p>{{ carro.id }}</p>
+    <p>{{ carro.modelo }}</p>
+    <p>{{ carro.ano }}</p>
+</main>
+{% endblock %}

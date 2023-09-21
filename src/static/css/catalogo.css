@@ -1,3 +1,10 @@
+.card__img_size {
+    width: 22rem !important;
+    height: 12rem !important;
+    background-position: fixed;
+    background-repeat: no-repeat;
+}
+
 /* tamanho dos cards principais */
 .card_style {
     width: 18rem;
@@ -20,7 +27,7 @@
     height: 100%;
 }
 
-.catalogo{
+.catalogo {
     width: 82%;
     height: 100%;
     background-color: #F6F7F9;
@@ -38,7 +45,7 @@
     color: #596780;
 }
 
-.text_modelo_carro{
+.text_modelo_carro {
     font-weight: 600;
     font-size: 20px;
     letter-spacing: -2%;
@@ -89,14 +96,14 @@
     margin-left: 20px;
 }
 
-.button_escolher{
+.button_escolher {
     width: 100px;
     height: 42px;
     top: 308px;
     left: 168px;
 }
 
-.subtext_primeiro{
+.subtext_primeiro {
     font-size: 14px;
     font-weight: 600px;
     line-height: 21px;
@@ -107,14 +114,12 @@
 
 /* o margin-top é diferente no primeiro card porque o subtext é bem maior e não deu pra alinhar
     usei style="margin-top:0px" */
-.subtext_segundo{
+.subtext_segundo {
     font-size: 14px;
     font-weight: 600px;
     line-height: 21px;
     letter-spacing: -2%;
-    margin-top: 10px;   
+    margin-top: 10px;
     margin-right: 10px;
     color: #90A3BF;
 }
-
-

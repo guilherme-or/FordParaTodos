@@ -35,7 +35,7 @@ class Carro(models.Model):
     modelo = models.CharField(max_length=64)
     ano = models.PositiveIntegerField()  # 1999
     cores = models.ManyToManyField(Cor)
-
+    
     class Meta:
         db_table = "carros"
         verbose_name_plural = "Carros"
@@ -59,8 +59,8 @@ class Personalizacao(models.Model):
 
 class Solicitacao(models.Model):
     descricao = models.TextField()
-    data_criacao = models.DateTimeField("Data de criação")
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    data_criacao = models.DateTimeField("Data de criação", auto_now_add=True)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=False)
     personalizacoes = models.ManyToManyField(
         Personalizacao, related_name="personalizacoes"
     )
