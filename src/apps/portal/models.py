@@ -70,4 +70,4 @@ class Solicitacao(models.Model):
         verbose_name_plural = "Solicitações"
 
     def __str__(self):
-        return self.data_criacao
+        return self.data_criacao.strftime("%d-%m-%Y")
