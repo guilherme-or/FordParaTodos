@@ -50,3 +50,9 @@
     width: 30rem;
     top: 40%; left: 0; right: 3rem; bottom: 10px;
 }
+
+.card_img_territory{
+    position: absolute;
+    width: 30rem;
+    top: 22%; left: 0; right: 3rem; bottom: 10px;
+}
