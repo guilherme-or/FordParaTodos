@@ -44,3 +44,9 @@
 .card_size{
     height: 24rem;
 }
+
+.card_img_size{
+    position: absolute;
+    width: 30rem;
+    top: 40%; left: 0; right: 3rem; bottom: 10px;
+}
