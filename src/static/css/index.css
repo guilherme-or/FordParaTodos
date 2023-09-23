@@ -47,12 +47,18 @@
 
 .card_img_size{
     position: absolute;
-    width: 30rem;
-    top: 40%; left: 0; right: 3rem; bottom: 10px;
+    width: 28rem;
+    top: 42%; left: 0; right: 3rem; bottom: 10px;
 }
 
 .card_img_territory{
     position: absolute;
-    width: 30rem;
-    top: 22%; left: 0; right: 3rem; bottom: 10px;
+    width: 28rem;
+    top: 26%; left: 0; right: 3rem; bottom: 10px;
+}
+
+.card_img_mustang{
+    position: absolute;
+    width: 25rem;
+    top: 45%; left: 0; right: 3rem; bottom: 10px;
 }
