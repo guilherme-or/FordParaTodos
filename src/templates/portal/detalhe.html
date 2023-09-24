@@ -2,10 +2,126 @@
 {% load static %}
 {% block title %}Catálogo{% endblock %}
 
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/detalhe.css' %}">
+{% endblock %}
+
+
 {% block content %}
-<main class="container-fluid">
-    <p>{{ carro.id }}</p>
-    <p>{{ carro.modelo }}</p>
-    <p>{{ carro.ano }}</p>
+<main>
+    <div style="background-color: #f8f4fc;height: 37px;">
+        <a class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3" href="{% url 'portal.catalogo' %}">
+            <i class="fa-solid fa-arrow-left me-2"></i>
+            Voltar
+        </a>
+    </div>
+    
+    <div class = "pagina">
+        
+        <div class="div__carro__detalhe">
+            <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="carro"
+                                        alt="Imagem do {{ carro.modelo }}">
+        </div>
+    
+        <div class = "div__info__carro">
+            <h5 class = "titulo__info"><b>{{ carro.modelo }}</b></h5>
+
+          
+            <div class = "texto__info">
+                <p>Descubra a potência inigualável e a tecnologia surpreendente da
+                    Nova Geração Ford Ranger. Equipada com motor V6, Câmbio de 10 velocidades e tração 4WD, a maior autoridade em picapes está criando um novo patamar na categoria.</p>
+            </div>
+
+
+            
+            <div class = "categorias__info">
+                <p sty><b style="color:rgb(173, 165, 165);padding-left: 10px;">Motor</b>:motor </p>
+                <p style="padding-right: 20px;"><b style="color:rgb(173, 165, 165);padding-left: 5px;" >Potência:</b>    250vc @ 3.250rpm       </p>
+                <p><b style="color:rgb(173, 165, 165);padding-left: 10px;">Transmissão:</b> Automática</p>
+                <p><b style="color:rgb(173, 165, 165);padding-left: 5px;">Outros itens:</b> 6 Modos de condução</p>
+            </div>
+
+            <div >
+                <p style="padding-left: 20px;font-size: 20px;"><b>Preço sob Consulta</b></p>
+            </div>
+    
+        </div>
+
+        
+    </div>
+    <div style="background-color: #f8f4fc;padding-bottom: 10px;"><p style="color:rgb(173, 165, 165);padding-left: 50px;padding-top: 30px;font-size: 17px;">Personalizações Disponiveis</p></div>
+    <div class = "div__personalizacoes">
+        
+        <div style="height: 100%;width: 40px;"></div>
+
+        <div class="card card-body col-md-1 align-items-center h-90">
+            <p class="card-title">Banco de tranferência manual</p>
+            <div style="width: 200px;">
+                <img src="{% static 'img/customizacoes/banco-trasnf-manual.png' %}" class="card-img-top" alt="Imagem de Banco de tranferência manual">
+            </div>
+            <p style="font-size: 10px;padding-top: 5px;">O banco de transferência manual auxilia na passagem entre o banco do carro e a cadeira de rodas, facilitando a entrada e saída do condutor ou passageiro</p>
+            <a class="btn btn-primary py-2 mt-1 mb-1" href="{% url 'portal.catalogo' %}">
+                 Adicionar
+            </a>
+            
+        </div>
+
+        <div style="height: 100%;width: 40px;"></div>
+
+        <div class="card card-body col-md-1 align-items-center h-90">
+            <p class="card-title">Acelerador e Freio Manual</p>
+            <div style="width: 200px;" >
+                <img src="{% static 'img/customizacoes/acelerador-freio-manual.png' %}" class="card-img-top" alt="Imagem de Acelerador e Freio Manual">
+            </div>
+            <p style="font-size: 10px;padding-top: 5px;text-align: left ">O Aceleradore Freio manual é uma adaptação veicular PCD destinado ao uso de motoristas com deficiência ou limitações nos membros superiores.</p>
+            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
+        </div>
+
+        <div style="height: 100%;width: 40px;"></div>
+
+        <div class="card card-body col-md-1 align-items-center h-90">
+            <p class="card-title">Pomo Giratório</p>
+            <div style="width: 200px;" >
+                <img src="{% static 'img/customizacoes/pomo-giratorio.png' %}" class="card-img-top" alt="Imagem de Pomo Giratório">
+            </div>
+            <p style="font-size: 13px;padding-top: 5px;text-align: left ">O pomo giratório permite que o motorista gire totalmente o volante em 360° e auxilia na
+                preensão para pessoas com
+                limitações de movimento nas
+                mãos.</p>
+            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
+        </div>
+
+        <div style="height: 100%;width: 40px;"></div>
+
+        <div class="card card-body col-md-1 align-items-center h-90">
+            <p class="card-title">Central de Comandos</p>
+            <div style="width: 200px;" >
+                <img src="{% static 'img/customizacoes/central-comandos.png' %}" class="card-img-top" alt="Imagem de Central de Comandos">
+            </div>
+            <p style="font-size: 8px;padding-top: 5px;text-align: left ">A Central de Comandos de Painel ao Volante é um dispositivo que permite o controle dos comandos elétricos de dirigibilidade (seta, faróis, lavadores, limpadores e buzina) e do volante do veículo simultaneamente.</p>
+            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
+        </div>
+
+        <div style="height: 100%;width: 40px;"></div>
+
+        <div class="card card-body col-md-1 align-items-center h-90">
+            <p class="card-title">PPU</p>
+            <div style="width: 200px;"  >
+                <img src="{% static 'img/customizacoes/PPU.png' %}" class="card-img-top" alt="Imagem de PPU">
+            </div>
+            <p style="font-size: 13px;padding-top: 5px;text-align: center ;">O PPU-Prolongamento de Pedais
+                Universal- é um equipamento que
+                aproxima, do motorista, o controle de
+                comandos do acelerador, freio de serviço e embreagem.</p>
+            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
+        </div>
+        
+        <div style="height: 100%;width: 40px;"></div>
+    
+    </div>
+    
+
+
 </main>
 {% endblock %}
