@@ -20,8 +20,11 @@
     <div class="pagina">
 
         <div class="div__carro__detalhe">
-            <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="carro"
+            <div class="bg">
+                <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="carro"
                 alt="Imagem do {{ carro.modelo }}">
+            </div>
+            
         </div>
 
         <div class="div__info__carro">

@@ -20,7 +20,7 @@
 }
 
 .carro {
-    width: 38%;
+    width: 600px;
 }
 
 .div__info__carro {
@@ -81,6 +81,13 @@
 .card_size {
     height: 550px !important;
     width: 320px !important;
+}
+
+.bg{
+    background-image: url("BG Detalhes.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 80%;
 }
 
 .card-text {
