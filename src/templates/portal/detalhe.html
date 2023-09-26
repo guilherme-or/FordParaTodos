@@ -18,26 +18,21 @@
     </div>
 
     <div class="pagina">
-
         <div class="div__carro__detalhe">
             <div class="bg">
                 <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="carro"
-                alt="Imagem do {{ carro.modelo }}">
+                    alt="Imagem do {{ carro.modelo }}">
             </div>
-            
         </div>
 
         <div class="div__info__carro">
             <h5 class="titulo__info"><b>{{ carro.modelo }}</b></h5>
-
 
             <div class="texto__info">
                 <p>Descubra a potência inigualável e a tecnologia surpreendente da
                     Nova Geração Ford Ranger. Equipada com motor V6, Câmbio de 10 velocidades e tração 4WD, a maior
                     autoridade em picapes está criando um novo patamar na categoria.</p>
             </div>
-
-
 
             <div class="categorias__info">
                 <p sty><b style="color:rgb(173, 165, 165);padding-left: 10px;">Motor</b>:motor </p>
@@ -50,10 +45,7 @@
             <div>
                 <p style="padding-left: 20px;font-size: 20px;"><b>Preço sob Consulta</b></p>
             </div>
-
         </div>
-
-
     </div>
     <div style="background-color: #f8f4fc;padding-bottom: 10px;">
         <p style="color:rgb(173, 165, 165);padding-left: 50px;padding-top: 30px;font-size: 17px;">Personalizações
@@ -63,9 +55,7 @@
 
 
 <main class="container-fluid">
-
-    <div class="row">
-
+    <form method="get" action="{% url 'portal.checkout' %}" class="row">
         <div class="card mx-4 my-4 col-md-2 card_size">
             <div class="card-body">
                 <p class="card-title text-center">Banco de tranferência manual</p>
@@ -82,13 +72,8 @@
                         Adicionar
                     </a>
                 </div>
-
-
-
             </div>
         </div>
-
-
 
         <div class="card mx-4 my-4  col-md-2 card_size">
             <div class="card-body">
@@ -165,12 +150,16 @@
                         Adicionar
                     </a>
                 </div>
-
             </div>
-
         </div>
 
-    </div>
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn btn-primary px-4 py-3 mx-5 my-4">
+                Continuar
+                <i class="fa-solid fa-arrow-right text-light"></i>
+            </button>
+        </div>
+    </form>
 
 
 

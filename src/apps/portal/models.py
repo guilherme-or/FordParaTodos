@@ -31,23 +31,9 @@ class Cor(models.Model):
         return self.nome
 
 
-class Carro(models.Model):
-    modelo = models.CharField(max_length=64)
-    ano = models.PositiveIntegerField()  # 1999
-    cores = models.ManyToManyField(Cor)
-    
-    class Meta:
-        db_table = "carros"
-        verbose_name_plural = "Carros"
-
-    def __str__(self):
-        return self.modelo
-
-
 class Personalizacao(models.Model):
     nome = models.CharField(max_length=64)
     descricao = models.TextField()
-    carros = models.ManyToManyField(Carro, related_name="carros")
 
     class Meta:
         db_table = "personalizacoes"
@@ -57,12 +43,31 @@ class Personalizacao(models.Model):
         return self.nome
 
 
+class Carro(models.Model):
+    modelo = models.CharField(max_length=64)
+    ano = models.PositiveIntegerField()  # 1999
+    cores = models.ManyToManyField(Cor)
+    motor = models.CharField(max_length=64)
+    potencia = models.CharField(max_length=32)
+    transmissao = models.CharField(max_length=32)
+    personalizacoes = models.ManyToManyField(
+        Personalizacao, related_name="carro_personalizacoes"
+    )
+
+    class Meta:
+        db_table = "carros"
+        verbose_name_plural = "Carros"
+
+    def __str__(self):
+        return self.modelo
+
+
 class Solicitacao(models.Model):
     descricao = models.TextField()
     data_criacao = models.DateTimeField("Data de criação", auto_now_add=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=False)
     personalizacoes = models.ManyToManyField(
-        Personalizacao, related_name="personalizacoes"
+        Personalizacao, related_name="solicitacao_personalizacoes"
     )
 
     class Meta:
