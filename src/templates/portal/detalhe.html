@@ -2,238 +2,150 @@
 {% load static %}
 {% block title %}Catálogo{% endblock %}
 
-
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/detalhe.css' %}">
 {% endblock %}
 
-
 {% block content %}
-<article>
-    <div style="background-color: #f8f4fc;height: 37px;">
-        <a class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3" href="{% url 'portal.catalogo' %}">
+<form method="get" action="{% url 'portal.checkout' %}">
+    <article class="d-none d-xl-block">
+        <div style="background-color: #f8f4fc;height: 37px;">
+            <a class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3" href="{% url 'portal.catalogo' %}">
+                <i class="fa-solid fa-arrow-left me-2"></i>
+                Voltar
+            </a>
+        </div>
+
+        <div class="pagina">
+            <div class="div__carro__detalhe">
+                <div class="bg">
+                    <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="carro"
+                        alt="Imagem do {{ carro.modelo }}">
+                </div>
+            </div>
+
+            <div class="div__info__carro">
+                <h5 class="titulo__info"><b>{{ carro.modelo }}</b></h5>
+
+                <div class="texto__info">
+                    <p>{{ carro.descricao }}</p>
+                </div>
+
+                <div class="categorias__info">
+                    <p><b style="color:rgb(173, 165, 165);padding-left: 10px;">Motor</b>: {{ carro.motor }} </p>
+                    <p style="padding-right: 20px;"><b style="padding-left: 5px;">Potência:</b> {{
+                        carro.potencia }}</p>
+                    <p><b style="color:rgb(173, 165, 165);padding-left: 10px;">Transmissão:</b> {{ carro.transmissao }}
+                    </p>
+                    <p><b style="color:rgb(173, 165, 165);padding-left: 5px;">Outros itens:</b> {{
+                        personalizacoes|length }}
+                        opções PCD</p>
+                </div>
+
+                <div>
+                    <p style="padding-left: 20px;font-size: 20px;"><b>Preço sob Consulta</b></p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="d-xl-none container-fluid bg-light">
+        <a class="btn btn-primary px-3 py-2 my-3" href="{% url 'portal.catalogo' %}">
             <i class="fa-solid fa-arrow-left me-2"></i>
             Voltar
         </a>
-    </div>
-
-    <div class="pagina">
-        <div class="div__carro__detalhe">
-            <div class="bg">
-                <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="carro"
-                    alt="Imagem do {{ carro.modelo }}">
-            </div>
-        </div>
-
-        <div class="div__info__carro">
-            <h5 class="titulo__info"><b>{{ carro.modelo }}</b></h5>
-
-            <div class="texto__info">
-                <p>Descubra a potência inigualável e a tecnologia surpreendente da
-                    Nova Geração Ford Ranger. Equipada com motor V6, Câmbio de 10 velocidades e tração 4WD, a maior
-                    autoridade em picapes está criando um novo patamar na categoria.</p>
-            </div>
-
-            <div class="categorias__info">
-                <p sty><b style="color:rgb(173, 165, 165);padding-left: 10px;">Motor</b>:motor </p>
-                <p style="padding-right: 20px;"><b style="color:rgb(173, 165, 165);padding-left: 5px;">Potência:</b>
-                    250vc @ 3.250rpm </p>
-                <p><b style="color:rgb(173, 165, 165);padding-left: 10px;">Transmissão:</b> Automática</p>
-                <p><b style="color:rgb(173, 165, 165);padding-left: 5px;">Outros itens:</b> 6 Modos de condução</p>
-            </div>
-
-            <div>
-                <p style="padding-left: 20px;font-size: 20px;"><b>Preço sob Consulta</b></p>
-            </div>
-        </div>
-    </div>
-    <div style="background-color: #f8f4fc;padding-bottom: 10px;">
-        <p style="color:rgb(173, 165, 165);padding-left: 50px;padding-top: 30px;font-size: 17px;">Personalizações
-            Disponiveis</p>
-    </div>
-</article>
-
-
-<main class="container-fluid">
-    <form method="get" action="{% url 'portal.checkout' %}" class="row">
-        <div class="card mx-4 my-4 col-md-2 card_size">
-            <div class="card-body">
-                <p class="card-title text-center">Banco de tranferência manual</p>
-                <div class="div__imagem__detalhe my-1">
-                    <img src="{% static 'img/customizacoes/banco-trasnf-manual.png' %}" class="card-img-top"
-                        alt="Imagem de Banco de tranferência manual">
+        <section class="card border-0 rounded-4">
+            <main class="card-body">
+                <div class="row">
+                    <div class="col-sm-12 mb-3">
+                        <h3 class="fw-bold">{{ carro.modelo }}</h3>
+                    </div>
+                    <div class="col-sm-12">
+                        <p>{{ carro.descricao }}</p>
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Motor:</b> {{ carro.motor }}
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Potência:</b> {{ carro.potencia }}
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Transmissão:</b> {{ carro.transmissao }}
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Outros:</b> {{ personalizacoes|length }}
+                        opções PCD
+                    </div>
+                    <div class="col-sm-12 mt-2">
+                        <h4>Preço sob consulta</h4>
+                    </div>
                 </div>
-                <p class="card-text">O banco de transferência manual auxilia na passagem
-                    entre o banco do carro e a cadeira de rodas, facilitando a entrada e saída do condutor ou
-                    passageiro</p>
+            </main>
+        </section>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary py-2 mt-1 mb-1 card-link" href="{% url 'portal.catalogo' %}">
-                        Adicionar
-                    </a>
-                </div>
+        <section class="w-100 py-3">
+            <h4 class="mx-4 mb-4">Cores disponíveis</h4>
+            {% for cor in cores %}
+            <div class="form-check form-check-inline mx-2">
+                <input type="radio" id="{{ cor.nome }}" class="d-none" {% if forloop.counter == 1 %}checked{% endif %}
+                    name="cor" value="{{ cor.id }}">
+                <label class="cor__input_radio__label rounded-circle" for="{{ cor.nome }}"
+                    style="background-color: {{ cor.codigo }};" title="{{ cor.nome }}, {{ cor.codigo }}"></label>
             </div>
-        </div>
+            {% endfor %}
+        </section>
+    </article>
 
-        <div class="card mx-4 my-4  col-md-2 card_size">
-            <div class="card-body">
-                <p class="card-title text-center">Acelerador e Freio Manual</p>
-                <div class="div__imagem__detalhe my-1">
-                    <img src="{% static 'img/customizacoes/acelerador-freio-manual.png' %}" class="card-img-top"
-                        alt="Imagem de Acelerador e Freio Manual">
-                </div>
-                <p class="card-text">O Aceleradore Freio manual é uma adaptação veicular PCD destinado ao uso de
-                    motoristas com
-                    deficiência ou limitações nos membros superiores.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary py-2 mt-1 mb-1" href="{% url 'portal.catalogo' %}">
-                        Adicionar
-                    </a>
+    <main class="container-fluid bg-light">
+        <h5 class="text-muted fw-bold mx-5 pt-5 pb-2">Personalizações Disponíveis</h5>
+
+        <div class="row">
+            {% for personalizacao in personalizacoes %}
+            <div class="card border-0 mx-4 my-4 col-md-3 card_size">
+                <div class="card-body">
+                    <p class="card-title text-center">{{ personalizacao.nome }}</p>
+                    <div class="div__imagem__detalhe my-1">
+                        <img src="{% static 'img/customizacoes' %}/{{ personalizacao.nome }}.png" class="card-img-top"
+                            alt="Imagem de {{ personalizacao.nome }}">
+                    </div>
+                    <p class="card-text">{{ personalizacao.descricao }}</p>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <input type="checkbox" name="personalizacoes" id="{{ personalizacao.nome }}"
+                            value="{{ personalizacao.id }}" class="personalizacoes d-none">
+                        <label class="w-100 personalizacao__checkbox__label rounded-2" for="{{ personalizacao.nome }}">
+                            <span id="unchecked-{{ personalizacao.nome }}">Adicionar</span>
+                            <i class="fa-solid fa-check d-none" id="checked-{{ personalizacao.nome }}"></i>
+                        </label>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
 
-        </div>
-
-        <div class="card mx-4 my-4  col-md-2 card_size">
-            <div class="card-body">
-                <p class="card-title text-center">Pomo Giratório</p>
-                <div class="div__imagem__detalhe my-1">
-                    <img src="{% static 'img/customizacoes/pomo-giratorio.png' %}" class="card-img-top"
-                        alt="Imagem de Pomo Giratório">
-                </div>
-                <p class="card-text">O pomo giratório permite que o motorista gire totalmente o volante em 360° e
-                    auxilia na preensão para
-                    pessoas com
-                    limitações de movimento nas mãos.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary py-2 mt-1 mb-1" href="{% url 'portal.catalogo' %}">
-                        Adicionar
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="card mx-4 my-4  col-md-2 card_size">
-            <div class="card-body">
-                <p class="card-title text-center">Central de Comandos</p>
-                <div class="div__imagem__detalhe my-1">
-                    <img src="{% static 'img/customizacoes/central-comandos.png' %}" class="card-img-top"
-                        alt="Imagem de Central de Comandos">
-                </div>
-                <p class="card-text">A Central de Comandos de Painel ao Volante é um dispositivo que permite o controle
-                    dos comandos
-                    elétricos de dirigibilidade (seta, faróis, lavadores, limpadores e buzina) e do volante do veículo
-                    simultaneamente.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary py-2 mt-1 mb-1" href="{% url 'portal.catalogo' %}">
-                        Adicionar
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="card mx-4 my-4  col-md-2 card_size">
-            <div class="card-body">
-                <p class="card-title text-center">PPU</p>
-                <div class="div__imagem__detalhe my-1">
-                    <img src="{% static 'img/customizacoes/PPU.png' %}" class="card-img-top" alt="Imagem de PPU">
-                </div>
-                <p class="card-text">O PPU-Prolongamento de Pedais
-                    Universal- é um equipamento que
-                    aproxima, do motorista, o controle de
-                    comandos do acelerador, freio de serviço e embreagem.
-                </p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary py-2 mt-1 mb-1 justify-content-md-end" href="{% url 'portal.catalogo' %}">
-                        Adicionar
-                    </a>
-                </div>
+            <div class="col-md-12 text-end">
+                <button type="submit" class="btn btn-primary px-4 py-3 mx-5 my-4">
+                    Continuar
+                    <i class="fa-solid fa-arrow-right text-light"></i>
+                </button>
             </div>
         </div>
+    </main>
+</form>
+{% endblock %}
 
-        <div class="col-md-12 text-end">
-            <button type="submit" class="btn btn-primary px-4 py-3 mx-5 my-4">
-                Continuar
-                <i class="fa-solid fa-arrow-right text-light"></i>
-            </button>
-        </div>
-    </form>
-
-
-
-    <!-- <div class = "div__personalizacoes">
-        
-        <div style="height: 100%;width: 40px;"></div>
-
-        <div class="card card-body col-md-1 align-items-center h-90">
-            <p class="card-title">Banco de tranferência manual</p>
-            <div class="div__imagem__detalhe">
-                <img src="{% static 'img/customizacoes/banco-trasnf-manual.png' %}" class="card-img-top" alt="Imagem de Banco de tranferência manual">
-            </div>
-            <p style="font-size: 10px;padding-top: 5px;">O banco de transferência manual auxilia na passagem entre o banco do carro e a cadeira de rodas, facilitando a entrada e saída do condutor ou passageiro</p>
-            <a class="btn btn-primary py-2 mt-1 mb-1" href="{% url 'portal.catalogo' %}">
-                 Adicionar
-            </a>
-            
-        </div>
-
-        <div style="height: 100%;width: 40px;"></div>
-
-        <div class="card card-body col-md-1 align-items-center h-90">
-            <p class="card-title">Acelerador e Freio Manual</p>
-            <div class="div__imagem__detalhe" >
-                <img src="{% static 'img/customizacoes/acelerador-freio-manual.png' %}" class="card-img-top" alt="Imagem de Acelerador e Freio Manual">
-            </div>
-            <p style="font-size: 10px;padding-top: 5px;text-align: left ">O Aceleradore Freio manual é uma adaptação veicular PCD destinado ao uso de motoristas com deficiência ou limitações nos membros superiores.</p>
-            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
-        </div>
-
-        <div style="height: 100%;width: 40px;"></div>
-
-        <div class="card card-body col-md-1 align-items-center h-90">
-            <p class="card-title">Pomo Giratório</p>
-            <div class="div__imagem__detalhe" >
-                <img src="{% static 'img/customizacoes/pomo-giratorio.png' %}" class="card-img-top" alt="Imagem de Pomo Giratório">
-            </div>
-            <p style="font-size: 13px;padding-top: 5px;text-align: left ">O pomo giratório permite que o motorista gire totalmente o volante em 360° e auxilia na
-                preensão para pessoas com
-                limitações de movimento nas
-                mãos.</p>
-            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
-        </div>
-
-        <div style="height: 100%;width: 40px;"></div>
-
-        <div class="card card-body col-md-1 align-items-center h-90">
-            <p class="card-title">Central de Comandos</p>
-            <div class="div__imagem__detalhe" >
-                <img src="{% static 'img/customizacoes/central-comandos.png' %}" class="card-img-top" alt="Imagem de Central de Comandos">
-            </div>
-            <p style="font-size: 8px;padding-top: 5px;text-align: left ">A Central de Comandos de Painel ao Volante é um dispositivo que permite o controle dos comandos elétricos de dirigibilidade (seta, faróis, lavadores, limpadores e buzina) e do volante do veículo simultaneamente.</p>
-            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
-        </div>
-
-        <div style="height: 100%;width: 40px;"></div>
-
-        <div class="card card-body col-md-1 align-items-center h-90">
-            <p class="card-title">PPU</p>
-            <div class="div__imagem__detalhe"  >
-                <img src="{% static 'img/customizacoes/PPU.png' %}" class="card-img-top" alt="Imagem de PPU">
-            </div>
-            <p style="font-size: 13px;padding-top: 5px;text-align: center ;">O PPU-Prolongamento de Pedais
-                Universal- é um equipamento que
-                aproxima, do motorista, o controle de
-                comandos do acelerador, freio de serviço e embreagem.</p>
-            <a class="btn btn-primary px-2 py-1 mt-1 mb-1" href="{% url 'portal.catalogo' %}">Adicionar</a>
-        </div>
-        
-        <div style="height: 100%;width: 40px;"></div>
-    
-    </div> -->
-
-</main>
-
-
+{% block scripts%}
+<script>
+    document
+        .querySelectorAll('.personalizacoes')
+        .forEach(personalizacao => personalizacao.addEventListener('change', e => {
+            const id = e.target.id;
+            if (e.target.checked) {
+                document.getElementById(`checked-${e.target.id}`).classList.remove('d-none');
+                document.getElementById(`unchecked-${e.target.id}`).classList.add('d-none');
+            } else {
+                document.getElementById(`unchecked-${e.target.id}`).classList.remove('d-none');
+                document.getElementById(`checked-${e.target.id}`).classList.add('d-none');
+            }
+        }));
+</script>
 {% endblock %}

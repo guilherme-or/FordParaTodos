@@ -3,5 +3,11 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<main class="container-fluid"></main>
+<main class="container-fluid">
+    <form action="{% url 'portal.login' %}" method="post">
+        <input type="text" name="email" id="email">
+        <input type="password" name="senha" id="senha">
+        <button type="submit">Entrar</button>
+    </form>
+</main>
 {% endblock %}
