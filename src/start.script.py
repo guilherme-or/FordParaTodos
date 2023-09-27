@@ -54,11 +54,12 @@ Cor(2, "Preto Astúrias", "#0a0a12").save()
 Cor(3, "Vermelho Aurora", "#ce3a38").save()
 Cor(4, "Azul Atlas", "#0252b5").save()
 
-# Carro(ID, "Modelo", Ano).save()
+# Carro(ID, "Modelo", Ano, "Motor", "Potência", "Transmissão").save()
 
-Carro(1, "Ford Ranger", 2023).save()
-Carro(2, "Ford Bronco Sport", 2023).save()
-Carro(3, "Ford Territory", 2022).save()
+# Carro(1, "Ford Ranger", 2024, "", "253CV", "").save()
+Carro(1, "Ford Maverick", 2023, "2.0L EcoBoost", "253CV", "Automática 8 Velocidades").save()
+Carro(2, "Ford Bronco Sport", 2023,"2.0L Turbo EcoBoost GTDi", "253CV @5500 rpm", "Automática 8 Velocidades").save()
+Carro(3, "Ford Territory", 2024, "1.5L EcoBoost", "169CV @ 5500 rpm", "DCT (Dupla Embreagem banhada a óleo) Automática de 7 velocidades").save()
 
 # Personalizacao(ID, "Nome", "Descricao")
 
