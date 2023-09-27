@@ -47,10 +47,10 @@ class Carro(models.Model):
     modelo = models.CharField(max_length=64)
     descricao = models.CharField(max_length=300, default="")
     ano = models.PositiveIntegerField()  # 1999
-    cores = models.ManyToManyField(Cor)
     motor = models.CharField(max_length=64)
     potencia = models.CharField(max_length=32)
     transmissao = models.CharField(max_length=32)
+    cores = models.ManyToManyField(Cor)
     personalizacoes = models.ManyToManyField(
         Personalizacao, related_name="carro_personalizacoes"
     )
