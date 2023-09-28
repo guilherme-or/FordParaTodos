@@ -10,4 +10,5 @@ urlpatterns = [
     path("login", views.login, name="portal.login"),
     path("logout", views.logout, name="portal.logout"),
     path("criar_conta", views.criar_conta, name="portal.criar_conta"),
+    
 ]
