@@ -3,9 +3,8 @@
     height: 350px;
 }
 
-
 .bg{
-    height: 900px;
+    height: 100vh;
     width:50vw;
     background-image: url("BG LoginRegistro.png");
     background-repeat: no-repeat;
