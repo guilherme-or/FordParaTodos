@@ -8,13 +8,15 @@
 
 {% block content %}
 <main class="container-fluid bg-light">
+    <div class="bg-white">
+        <a href="{{ previous_url }}" class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3 ">
+            <i class="fa-solid fa-arrow-left me-2"></i>
+            Voltar
+        </a>
+    </div>
+
     <div class="row">
         <div class="col-md-6 d-flex justify-content-center align-items-center position-relative">
-            <a href="{% url 'portal.login' %}"
-                class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3 position-absolute top-0 start-0">
-                <i class="fa-solid fa-arrow-left me-2"></i>
-                Voltar
-            </a>
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="card-title mb-3 fw-bold">Bem vindo a Ford para Todos!</h5>

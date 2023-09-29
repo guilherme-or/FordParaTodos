@@ -1,18 +1,18 @@
 .card__img_size {
-    width: 22rem !important;
-    height: 12rem !important;
+    /* width: 22rem !important;
+    height: 12rem !important; */
     background-position: center;
     background-repeat: no-repeat;
 }
 
 /* tamanho dos cards principais */
-.card_style {
+/* .card_style {
     width: 18rem;
-    height: 23rem;
+    height: 25rem !important;
     padding: 1rem;
     margin: 1rem;
     border-style: hidden;
-}
+} */
 
 /* define a área que a imagem vai ocupar */
 .div_img {

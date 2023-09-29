@@ -8,14 +8,21 @@
 
 {% block content %}
 <main class="container-fluid bg-light">
+    <div class="bg-white">
+        <a href="{{ previous_url }}" class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3 ">
+            <i class="fa-solid fa-arrow-left me-2"></i>
+            Voltar
+        </a>
+    </div>
+
     <div class="row">
         <div class="col-md-6 d-flex justify-content-center align-items-center position-relative">
-            <a href="{{ previous_url }}"
-                class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3 position-absolute top-0 start-0">
+            <!-- <a href="{{ previous_url }}" class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3 position-absolute top-0 start-0">
                 <i class="fa-solid fa-arrow-left me-2"></i>
                 Voltar
-            </a>
-            <div class="card w-50 border-0">
+            </a> -->
+
+            <div class="card w-50 border-0 d-none d-lg-block">
                 <div class="card-body">
                     <h5 class="fw-bold card-title">Faça login agora</h5>
                     <div class="mb-4">
@@ -45,11 +52,43 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-6 d-none d-lg-block">
             <div class="bg">
 
             </div>
         </div>
+
+        <div class="card w-100 border-0 d-lg-none">
+            <div class="card-body">
+                <h5 class="fw-bold card-title">Faça login agora</h5>
+                <div class="mb-4">
+                    <a style="color: #102587;" href="{% url 'portal.criar_conta' %}">Não tem conta? Faça agora</a>
+                </div>
+                {% if error %}
+                <p class="text-danger">{{ error }}</p>
+                {% endif %}
+                <form action="{% url 'portal.login' %}" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="fw-bold form-label">Email</label>
+                        <input type="email" class="form-control border-0 bg-light px-2 py-3" id="email" name="email"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="senha" class="fw-bold form-label">Senha</label>
+                        <input type="password" class="form-control border-0 bg-light py-3" id="senha" name="senha"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <a style="color: #102587;" href="#">Esqueci minha senha</a>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     </div>
 </main>
 {% endblock %}
