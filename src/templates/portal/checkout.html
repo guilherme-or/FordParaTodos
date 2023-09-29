@@ -1,6 +1,46 @@
 {% extends "layout/base.html" %}
 {% load static %}
 {% block title %}Finalização{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
 
 {% block content %}
+<main class="bg-light">
+    <aside class="py-4 px-3">
+        <a class="btn btn-primary px-3 py-2" href="{% url 'portal.catalogo' %}">
+            <i class="fa-solid fa-arrow-left me-2"></i>
+            Voltar
+        </a>
+    </aside>
+
+    <section class="row">
+        <div class="col-md-6 d-flex justify-content-center">
+            <h2 class="fw-bold ">{{ carro.modelo }}</h2>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="img-fluid"
+                alt="Imagem do {{ carro.modelo }}">
+
+        </div>
+        {% for personalizacao in personalizacoes %}
+        <div class="col-md-3 mx-4 my-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="fw-bold mb-2">{{ personalizacao.nome }}</h4>
+                    <p>{{ personalizacao.descricao }}</p>
+                    <div class="text-end">
+                        <button type="button" class="btn confirmado text-light">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-md-12">
+            <h3 class="fw-bold text-end mb-4 mx-5">Preço Sobre Consulta</h3>
+        </div>
+    </section>
+</main>
 {% endblock %}
