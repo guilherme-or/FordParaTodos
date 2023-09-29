@@ -25,26 +25,56 @@
             </div>
 
             <div class="div__info__carro">
-                <h5 class="titulo__info"><b>{{ carro.modelo }}</b></h5>
+                <!-- <h5 class="titulo__info"><b>{{ carro.modelo }}</b></h5>
 
                 <div class="texto__info">
-                    <p>{{ carro.descricao }}</p>
+                    <p>{{ carro.descricao }}
                 </div>
 
                 <div class="categorias__info">
-                    <p><b style="color:rgb(173, 165, 165);padding-left: 10px;">Motor</b>: {{ carro.motor }} </p>
-                    <p style="padding-right: 20px;"><b style="padding-left: 5px;">Potência:</b> {{
-                        carro.potencia }}</p>
-                    <p><b style="color:rgb(173, 165, 165);padding-left: 10px;">Transmissão:</b> {{ carro.transmissao }}
+                    <p>
+                        <b style="color:rgb(173, 165, 165);padding-left: 10px;">Motor</b>:
+                        {{ carro.motor }}
                     </p>
-                    <p><b style="color:rgb(173, 165, 165);padding-left: 5px;">Outros itens:</b> {{
-                        personalizacoes|length }}
-                        opções PCD</p>
+                    <p style="color:rgb(173, 165, 165);padding-right: 20px;">
+                        <b style="padding-left: 5px;">Potência:</b>
+                        {{ carro.potencia }}
+                    </p>
+                    <p>
+                        <b style="color:rgb(173, 165, 165);padding-left: 10px;">Transmissão:</b>
+                        {{ carro.transmissao }}
+                    </p>
+                    <p>
+                        <b style="color:rgb(173, 165, 165);padding-left: 5px;">Outros itens:</b>
+                        {{ personalizacoes|length }} opções PCD
+                    </p>
                 </div>
-
                 <div>
                     <p style="padding-left: 20px;font-size: 20px;"><b>Preço sob Consulta</b></p>
+                </div> -->
+                <h3 class="fw-bold mb-4">{{ carro.modelo }}</h3>
+                <p>{{ carro.descricao }}</p>
+                <div class="d-flex my-2">
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Motor</b>:
+                        {{ carro.motor }}
+                    </p>
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Potência:</b>
+                        {{ carro.potencia }}
+                    </p>
                 </div>
+                <div class="d-flex my-2">
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Transmissão:</b>
+                        {{ carro.transmissao }}
+                    </p>
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Outros itens:</b>
+                        {{ personalizacoes|length }} opções PCD
+                    </p>
+                </div>
+                <h4>Preço sob consulta</h4>
             </div>
         </div>
     </article>
@@ -54,6 +84,9 @@
             <i class="fa-solid fa-arrow-left me-2"></i>
             Voltar
         </a>
+
+        <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="w-100 img-fluid my-3" alt="Imagem do {{ carro.modelo }}">
+
         <section class="card border-0 rounded-4">
             <main class="card-body">
                 <div class="row">
@@ -84,7 +117,7 @@
         </section>
 
         <section class="w-100 py-3">
-            <h4 class="mx-4 mb-4">Cores disponíveis</h4>
+            <h4 class="text-muted fw-bold mx-5 pt-5 pb-2">Cores disponíveis</h4>
             {% for cor in cores %}
             <div class="form-check form-check-inline mx-2">
                 <input type="radio" id="{{ cor.nome }}" class="d-none" {% if forloop.counter == 1 %}checked{% endif %}
@@ -97,23 +130,25 @@
     </article>
 
     <main class="container-fluid bg-light">
-        <h5 class="text-muted fw-bold mx-5 pt-5 pb-2">Personalizações Disponíveis</h5>
+        <h4 class="text-muted fw-bold mx-5 pt-5 pb-2">Personalizações Disponíveis</h4>
 
         <div class="row">
             {% for personalizacao in personalizacoes %}
-            <div class="card border-0 mx-4 my-4 col-md-3 card_size">
+            <div class="card border-0 mx-2 my-2 col-md-3 card_size">
                 <div class="card-body">
-                    <p class="card-title text-center">{{ personalizacao.nome }}</p>
+                    <h6 class="card-title fw-bold text-center">{{ personalizacao.nome }}</h6>
+
                     <div class="div__imagem__detalhe my-1">
                         <img src="{% static 'img/customizacoes' %}/{{ personalizacao.nome }}.png" class="card-img-top"
                             alt="Imagem de {{ personalizacao.nome }}">
                     </div>
+
                     <p class="card-text">{{ personalizacao.descricao }}</p>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <input type="checkbox" name="personalizacoes" id="{{ personalizacao.nome }}"
                             value="{{ personalizacao.id }}" class="personalizacoes d-none">
-                        <label class="w-100 personalizacao__checkbox__label rounded-2" for="{{ personalizacao.nome }}">
+                        <label class="personalizacao__checkbox__label rounded-2" for="{{ personalizacao.nome }}">
                             <span id="unchecked-{{ personalizacao.nome }}">Adicionar</span>
                             <i class="fa-solid fa-check d-none" id="checked-{{ personalizacao.nome }}"></i>
                         </label>
@@ -123,7 +158,7 @@
             {% endfor %}
 
             <div class="col-md-12 text-end">
-                <button type="submit" class="btn btn-primary px-4 py-3 mx-5 my-4">
+                <button type="submit" class="btn btn-primary px-4 py-3 mx-3 my-2">
                     Continuar
                     <i class="fa-solid fa-arrow-right text-light"></i>
                 </button>

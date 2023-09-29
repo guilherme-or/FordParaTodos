@@ -21,17 +21,18 @@
 
 .div__info__carro {
     display: flex;
-    width: 30rem;
+    flex-direction: column;
+    width: 32rem;
+    /* height: 20rem; */
     margin-left: 50rem;
     margin-bottom: 10rem;
-    height: 20rem;
     border: 4px;
     z-index: 1;
     position: absolute;
     border-radius: 20px;
     background-color: #FFFFFF;
-    flex-direction: column;
     box-shadow: 1px;
+    padding: 1rem 1.25rem;
 }
 
 .div__personalizacoes {

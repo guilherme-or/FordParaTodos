@@ -8,7 +8,6 @@ Carro.objects.all().delete()
 Personalizacao.objects.all().delete()
 Solicitacao.objects.all().delete()
 
-
 # Usuario(ID, "Nome", "Sobrenome", admin, "senha", data_nascimento, "email", "celular", "cep")
 
 u1 = Usuario(
@@ -78,7 +77,6 @@ co3.save()
 co4 = Cor(4, "Azul Atlas", "#0252b5")
 co4.save()
 
-
 # Personalizacao(ID, "Nome", "Descricao")
 
 p1 = Personalizacao(
@@ -123,7 +121,7 @@ p5 = Personalizacao(
 p5.save()
 
 
-# Carro(ID, "Modelo", Ano, "Motor", "Potência", "Transmissão").save()
+# Carro(ID, "Modelo", "Descricao", Ano, "Motor", "Potência", "Transmissão").save()
 
 ca1 = Carro(
     1,
@@ -135,7 +133,7 @@ ca1 = Carro(
     2023,
     "2.0L EcoBoost",
     "253CV @ 5500 rpm",
-    "Automática 8 Velocidades"
+    "Automática 8 Velocidades",
 )
 ca1.save()
 
@@ -155,8 +153,9 @@ ca1.save()
 ca2 = Carro(
     2,
     "Ford Bronco Sport",
-    "Ford Bronco Sport, um SUV imbatível. Performance e capacidade off-road excepcionais, \
-    tecnologia, conectividade e segurança para superar todo tipo de desafio: dentro e fora de estrada.",
+    "Ford Bronco Sport, um SUV imbatível. Performance e capacidade off-road \
+    excepcionais, tecnologia, conectividade e segurança para superar todo \
+    tipo de desafio: dentro e fora de estrada.",
     2023,
     "2.0L Turbo EcoBoost GTDi",
     "253CV @ 5500 rpm",
@@ -195,6 +194,3 @@ ca3.cores.add(co4)
 ca3.save()
 
 # Solicitacao(descricao="Descricao",usuario=#)
-
-Solicitacao(descricao="Descrição teste solicitação 1", usuario=1).save()
-Solicitacao(descricao="Descrição teste solicitação 2", usuario=2).save()
