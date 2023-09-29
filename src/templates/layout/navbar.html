@@ -18,13 +18,14 @@
                         placeholder="Pesquise seu carro aqui" aria-label="Pesquisar">
                 </form>
             </ul>
-            <button type="button py-4 px-3" class="btn btn-primary">Fale conosco</button>
+            <button type="button" class="btn btn-primary py-2">Fale conosco</button>
             <button type="button" class="btn btn-outline-primary rounded-circle ms-5 me-4 my-1" id="configuration">
                 <i class="fa-solid fa-gear"></i>
             </button>
-            <button type="button" class="btn btn-outline-primary rounded-circle" id="user-login">
+            <a href="{% url 'portal.login' %}" class="btn btn-outline-primary rounded-circle" id="user-login">
                 <i class="fa-solid fa-user"></i>
-            </button>
+                <!-- <p class="m-0"></p> -->
+            </a>
         </div>
     </main>
 </nav>
