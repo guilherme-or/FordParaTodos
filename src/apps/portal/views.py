@@ -88,13 +88,17 @@ def checkout(request):
 def solicitacao(request):
     form = request.POST
     form_carro = Carro.objects.get(pk=form.get("carro", None))
+    form_cor = Cor.objects.get(pk=form.get("cor", None))
     form_observacao = form.get("observacao", "")
     session_usuario = Usuario.objects.get(pk=request.session["id_usuario"])
 
     nova_solicitacao = None
     try:
         nova_solicitacao = Solicitacao.objects.create(
-            observacao=form_observacao, usuario=session_usuario, carro=form_carro
+            observacao=form_observacao,
+            usuario=session_usuario,
+            carro=form_carro,
+            cor=form_cor,
         )
     except Exception:
         redirect("portal.checkout")

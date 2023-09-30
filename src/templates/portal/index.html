@@ -7,25 +7,25 @@
 {% endblock %}
 
 {% block content %}
-<article id="carouselExampleCaptions" class="carousel slide d-none d-md-block">
-    <div class="carousel-inner d-none d-xl-block">
+<article id="carouselExampleCaptions" class="carousel slide d-none d-xl-block">
+    <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="{% static 'img/Ford Menu.png' %}" class="d-block w-100" alt="Foto de duas Ford Rangers no campo"
                 style="filter: brightness(50%);">
 
-            <div class="carousel-caption d-none d-md-block carousel-caption-left">
-                <h3>Estamos construindo mais do que carros adaptados para pessoas com deficiência. Estamos
+            <div class="carousel-caption carousel-caption-left">
+                <h3>Estamos construindo mais do que carros adaptados para <b>pessoas com deficiência</b>. Estamos
                     construindo pontes para a independência, estradas para a liberdade e possibilidades sem limites.
                 </h3>
             </div>
 
-            <div class="carousel-caption d-none d-md-block carousel-caption-right">
-                <h3 class="">Porque a mobilidade é um direito de todos, e nossa paixão é criar veículos que abrem
+            <div class="carousel-caption carousel-caption-right">
+                <h3>Porque a <b>mobilidade</b> é um direito de todos, e nossa paixão é criar veículos que abrem
                     caminho
                     para um mundo onde cada jornada é uma conquista extraordinária.</h3>
             </div>
 
-            <div class="carousel-caption d-none d-md-block carousel-caption-link">
+            <div class="carousel-caption carousel-caption-link">
                 <a class="btn btn-light px-2 py-3" href="{% url 'portal.catalogo' %}">Conhecer modelos <i
                         class="fa-solid fa-arrow-right ms-2 me-1" style="color: #00095b;"></i></a>
             </div>
@@ -33,10 +33,17 @@
     </div>
 </article>
 
-<section class="d-xl-none bg-white px-4 py-2 d-flex align-items-end justify-content-start">
-
-    <a class="btn btn-light px-2 py-3 my-5" href="{% url 'portal.catalogo' %}">Conhecer modelos <i
-            class="fa-solid fa-arrow-right ms-2 me-1" style="color: #00095b;"></i></a>
+<section class="bg-white px-4 py-2 d-xl-none d-block">
+    <h3 class="mx-3 my-5 text-start">
+        Estamos construindo mais do que carros adaptados para <b>pessoas com deficiência</b>. Estamos construindo pontes para a
+            independência, estradas para a liberdade e possibilidades sem limites.
+    </h3>
+    <h3 class="mx-3 mb-3 text-end">
+        Porque a <b>mobilidade</b> é um direito de todos, e nossa paixão é criar veículos que abrem caminho para um mundo onde
+        cada jornada é uma conquista extraordinária.
+    </h3>
+    <a class="btn btn-primary px-2 py-3 my-5" href="{% url 'portal.catalogo' %}">Conhecer modelos <i
+            class="fa-solid fa-arrow-right ms-2 me-1"></i></a>
 </section>
 
 <main class="container-fluid">
