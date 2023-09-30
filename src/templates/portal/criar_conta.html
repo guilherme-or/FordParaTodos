@@ -20,6 +20,9 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="card-title mb-3 fw-bold">Bem vindo a Ford para Todos!</h5>
+                    {% if error %}
+                    <p class="text-danger mb-2">{{ error }}</p>
+                    {% endif %}
                     <form action="{% url 'portal.criar_conta' %}" method="post" class="row">
                         <div class="col-6 my-2">
                             <label for="nome" class="form-label fw-bold">Nome</label>

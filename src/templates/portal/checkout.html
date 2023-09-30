@@ -8,39 +8,99 @@
 {% block content %}
 <main class="bg-light">
     <aside class="py-4 px-3">
-        <a class="btn btn-primary px-3 py-2" href="{% url 'portal.catalogo' %}">
+        <a class="btn btn-primary px-3 py-2" href="{{ previous_url }}">
             <i class="fa-solid fa-arrow-left me-2"></i>
             Voltar
         </a>
     </aside>
 
-    <section class="row">
-        <div class="col-md-6 d-flex justify-content-center">
-            <h2 class="fw-bold ">{{ carro.modelo }}</h2>
-        </div>
-        <div class="col-md-6">
-            <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="img-fluid"
-                alt="Imagem do {{ carro.modelo }}">
+    <form action="{% url 'portal.solicitacao' %}" method="post">
+        <section class="row bg-gray" style="margin: auto !important;">
+            <div class="col-lg-3 d-flex flex-column align-items-center">
+                <h2 class="fw-bold mt-5 mb-1">{{ carro.modelo }}</h2>
+                <h5 class="fw-bold my-3">{{ cor.nome }}</h6>
+            </div>
 
-        </div>
-        {% for personalizacao in personalizacoes %}
-        <div class="col-md-3 mx-4 my-3">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="fw-bold mb-2">{{ personalizacao.nome }}</h4>
-                    <p>{{ personalizacao.descricao }}</p>
-                    <div class="text-end">
-                        <button type="button" class="btn confirmado text-light">
-                            <i class="fa-solid fa-check"></i>
-                        </button>
+            <div class="col-lg-6 d-flex justify-content-center">
+                <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="img-fluid"
+                    alt="Imagem do {{ carro.modelo }}">
+            </div>
+
+            <div class="col-lg-3 d-flex justify-content-end align-items-end">
+                <h5 class="fw-bold text-end my-4 mx-2">Preço sobre consulta</h5>
+            </div>
+
+            <div class="col-lg-12 mb-2 mt-4">
+                <h5 class="text-muted fw-bold mx-3">Adaptações escolhidas</h5>
+            </div>
+
+            {% for personalizacao in personalizacoes %}
+            <div class="col-lg-3 my-2 my-lg-4">
+                <div class="card border-0 rounded-4">
+                    <div class="card-body">
+                        <input type="hidden" name="personalizacoes" value="{{ personalizacao.id }}">
+                        <h4 class="fw-bold mb-2">{{ personalizacao.nome }}</h4>
+                        <p class="mb-4">{{ personalizacao.descricao }}</p>
+                        <div class="text-end">
+                            <button type="button" class="btn confirmado text-light">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
-        <div class="col-md-12">
-            <h3 class="fw-bold text-end mb-4 mx-5">Preço Sobre Consulta</h3>
-        </div>
-    </section>
+            {% endfor %}
+        </section>
+
+        <section class="row p-lg-5 p-md-4 p-sm-3 bg-checkout" style="margin: auto !important;">
+            <div class="col-lg-8">
+                <div class="card border-0 rounded-4">
+                    <div class="card-body">
+                        <h4 class="card-title mb-1 fw-bold">Preencha o formulário abaixo</h4>
+                        <p class="card-title mb-3 text-muted">Informações necessárias para solicitação de consulta ou
+                            personalização do veículo</p>
+                        <div class="row">
+                            <div class="col-sm-12 my-2">
+                                <label for="nome_completo" class="form-label fw-bold">Nome Completo</label>
+                                <input type="text" class="form-control text-muted border-0 bg-light px-2 py-3"
+                                    id="nome_completo" value="{{ usuario.nome }} {{ usuario.sobrenome }}" disabled>
+                            </div>
+
+                            <div class="col-sm-4 my-2">
+                                <label for="email" class="form-label fw-bold">E-mail</label>
+                                <input type="email" class="form-control text-muted border-0 bg-light px-2 py-3"
+                                    id="email" value="{{ usuario.email }}" disabled>
+                            </div>
+
+                            <div class="col-sm-4 my-2">
+                                <label for="cep" class="form-label fw-bold">CEP</label>
+                                <input type="text" class="form-control text-muted border-0 bg-light px-2 py-3" id="cep"
+                                    value="{{ usuario.cep }}" disabled>
+                            </div>
+
+                            <div class="col-sm-4 my-2">
+                                <label for="celular" class="form-label fw-bold">Celular</label>
+                                <input type="text" class="form-control text-muted border-0 bg-light px-2 py-3"
+                                    id="celular" value="{{ usuario.celular }}" disabled>
+                            </div>
+
+                            <div class="col-sm-12 my-2">
+                                <label for="observacao" class="form-label fw-bold">Observação</label>
+                                <textarea class="form-control border-0 bg-light px-2 py-3" id="observacao"
+                                    name="observacao" rows="9" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex justify-content-start align-items-end">
+                <button type="submit" class="btn btn-light py-3 px-2 mt-3 mb-4 m-lg-0"
+                    style="background-color: #ffffff !important;">
+                    Enviar consulta
+                    <i class="fa-solid fa-arrow-right ms-1" style="color: #00095b;"></i>
+                </button>
+            </div>
+        </section>
+    </form>
 </main>
 {% endblock %}

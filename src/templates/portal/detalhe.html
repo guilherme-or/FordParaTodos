@@ -7,6 +7,73 @@
 {% endblock %}
 
 {% block content %}
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <div class="d-flex justify-content-start">
+            <a type="button" class="text-reset mx-3" data-bs-dismiss="offcanvas">
+                <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
+            </a>
+            <h5 id="offcanvasRightLabel">Voltar para catálogo</h5>
+        </div>
+    </div>
+
+    <div class="offcanvas-body">
+        <!-- ***********************************COMEÇO SHOPPING CART******************************   -->
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-12">
+                    <div class="mr-2">
+
+                        <div class="d-flex justify-content-between">
+                            <span>Você possui 1 item no carrinho</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mt-3 p-2 rounded">
+                            <div class="d-flex flex-row">
+                                <img src="{% static 'img/customizacoes/Banco de Transferência Manual.png' %}"
+                                    class="rounded mx-2 my-2" alt="Imagem de {{ personalizacao.nome }}" style="height: 50px;
+                                            width: auto;">
+
+                                <span class="font-weight-bold d-block mx-3">Banco de transferência manual</span>
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <span class="d-block ml-3 font-weight-bold">R$20.000,00</span>
+                                <span class="mx-3" style="cursor: pointer;">
+                                    <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div>
+                        <hr class="line">
+                        <div class="d-flex justify-content-between">
+                            <span>Subtotal</span>
+                            <span>R$20.000,00</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Frete</span>
+                            <span>R$0,00</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Total</span>
+                            <span>R$20.000,00</span>
+                        </div>
+                        <button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"
+                            href="">
+                            <span class="mx-2">R$20.000,00</span>
+                            <span class="mx-2">Checkout<i class="fa fa-long-arrow-right ml-1 mx-1"></i></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***************************************FINAL SHOPPING CART*********************************** -->
+    </div>
+</div>
+
 <form method="get" action="{% url 'portal.checkout' %}">
     <input type="hidden" name="carro" value="{{ carro.id }}">
 
@@ -32,6 +99,18 @@
                     <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="carro"
                         alt="Imagem do {{ carro.modelo }}">
                 </div>
+            </div>
+
+            <div class="div__cor__carro">
+                <h4 class="text-muted fw-bold mb-5">Cores Disponíveis</h4>
+                {% for cor in cores %}
+                <div class="form-check form-check-inline mx-2">
+                    <input type="radio" id="{{ cor.nome }}" class="d-none cor__input_radio" name="cor"
+                        value="{{ cor.id }}">
+                    <label class="cor__input_radio__label rounded-circle" for="{{ cor.nome }}"
+                        style="background-color: {{ cor.codigo }};" title="{{ cor.nome }}, {{ cor.codigo }}"></label>
+                </div>
+                {% endfor %}
             </div>
 
             <div class="div__info__carro">
@@ -181,8 +260,6 @@
             <h4 class="text-muted fw-bold mx-5 pt-5 pb-2">Cores disponíveis</h4>
             {% for cor in cores %}
             <div class="form-check form-check-inline mx-2">
-                <input type="radio" id="{{ cor.nome }}" class="d-none" {% if forloop.counter == 1 %}checked{% endif %}
-                    name="cor" value="{{ cor.id }}">
                 <label class="cor__input_radio__label rounded-circle" for="{{ cor.nome }}"
                     style="background-color: {{ cor.codigo }};" title="{{ cor.nome }}, {{ cor.codigo }}"></label>
             </div>
@@ -231,8 +308,26 @@
 
 {% block scripts%}
 <script>
-    document
-        .querySelectorAll('.personalizacoes')
+    document.querySelectorAll('.cor__input_radio').forEach(input => {
+        input.addEventListener('change', () => {
+            const labels = document.querySelectorAll('.cor__input_radio__label')
+            labels.forEach(label => label.classList.remove('bordered'));
+            if (!input.checked) { return; }
+
+            labels.forEach(label => {
+                if (label.getAttribute("for") != input.getAttribute("id")) {
+                    return;
+                }
+                label.classList.add("bordered");
+            });
+        });
+    });
+
+    const firstInput = document.querySelector('.cor__input_radio');
+    firstInput.checked = true;
+    firstInput.dispatchEvent(new Event('change'));
+
+    document.querySelectorAll('.personalizacoes')
         .forEach(personalizacao => personalizacao.addEventListener('change', e => {
             const id = e.target.id;
             if (e.target.checked) {

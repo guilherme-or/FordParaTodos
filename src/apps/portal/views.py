@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-from .models import Carro, Cor, Personalizacao, Usuario
+from .models import Carro, Cor, Personalizacao, Usuario, Solicitacao
 
 
 @require_http_methods(["GET"])
@@ -50,6 +50,13 @@ def checkout(request):
     request.session["next_page"] = None
     not_logged_data = request.session.get("not_logged_data", {})
 
+    id_usuario = request.session["id_usuario"]
+    usuario = None
+    try:
+        usuario = Usuario.objects.get(pk=id_usuario)
+    except Exception:
+        return redirect("portal.catalogo")
+
     id_carro = query_dict.get("carro", not_logged_data.get("carro", None))
     carro = Carro.objects.get(pk=id_carro)
 
@@ -66,8 +73,45 @@ def checkout(request):
     return render(
         request,
         "portal/checkout.html",
-        {"carro": carro, "cor": cor, "personalizacoes": personalizacoes},
+        {
+            "usuario": usuario,
+            "carro": carro,
+            "cor": cor,
+            "personalizacoes": personalizacoes,
+            "previous_url": request.META["HTTP_REFERER"],
+        },
     )
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def solicitacao(request):
+    form = request.POST
+    form_observacao = form.get("observacao", "")
+    session_usuario = Usuario.objects.get(pk=request.session["id_usuario"])
+
+    nova_solicitacao = None
+
+    try:
+        nova_solicitacao = Solicitacao.objects.create(
+            descricao=form_observacao, usuario=session_usuario
+        )
+    except Exception:
+        redirect("portal.checkout")
+        pass
+
+    for id_personalizacao in form.getlist("personalizacoes", []):
+        personalizacao = Personalizacao.objects.get(pk=id_personalizacao)
+        nova_solicitacao.personalizacoes.add(personalizacao)
+
+    nova_solicitacao.save()
+
+    return redirect("portal.agradecimento")
+
+
+@require_http_methods(["GET"])
+def agradecimento(request):
+    return render(request, "portal/agradecimento.html")
 
 
 @csrf_exempt
@@ -93,7 +137,7 @@ def login(request):
 
         try:
             usuario = Usuario.objects.get(email__exact=email)
-        except:
+        except Exception:
             return render(request, "portal/login.html", usuario_not_found)
 
         if usuario is None or usuario.senha != senha:
@@ -102,15 +146,6 @@ def login(request):
         request.session["id_usuario"] = usuario.id
         redirect_page = request.session.get("next_page", "portal.index")
         return redirect(redirect_page)
-
-
-@csrf_exempt
-@require_http_methods(["GET", "POST"])
-def logout(request):
-    request.session.clear()
-    request.session.flush()
-
-    return redirect("portal.index")
 
 
 @csrf_exempt
@@ -145,7 +180,7 @@ def criar_conta(request):
                 email=form_email,
                 senha=form_senha,
             )
-        except:
+        except Exception:
             return render(
                 request,
                 "portal/criar_conta.html",
@@ -162,3 +197,12 @@ def criar_conta(request):
         request.session["id_usuario"] = novo_usuario.id
         redirect_page = request.session.get("next_page", "portal.index")
         return redirect(redirect_page)
+
+
+@csrf_exempt
+@require_http_methods(["GET", "POST"])
+def logout(request):
+    request.session.clear()
+    request.session.flush()
+
+    return redirect("portal.index")
