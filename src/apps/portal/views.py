@@ -63,11 +63,13 @@ def checkout(request):
     id_cor = query_dict.get("cor", not_logged_data.get("cor", None))
     cor = Cor.objects.get(pk=id_cor)
 
+    montante = carro.preco
     personalizacoes = []
     for id_personalizacao in query_dict.getlist(
         "personalizacoes", not_logged_data.get("personalizacoes", None)
     ):
         personalizacao = Personalizacao.objects.get(pk=id_personalizacao)
+        montante += personalizacao.preco
         personalizacoes.append(personalizacao)
 
     return render(
@@ -78,6 +80,7 @@ def checkout(request):
             "carro": carro,
             "cor": cor,
             "personalizacoes": personalizacoes,
+            "montante": montante,
             "previous_url": request.META["HTTP_REFERER"],
         },
     )

@@ -44,8 +44,8 @@ u3 = Usuario(
     "usuario",
     "2003-01-01",
     "edu@email.com",
-    "11987654321",
-    "98765432",
+    "(11) 98765-4321",
+    "98765-432",
 )
 u3.save()
 
@@ -57,8 +57,8 @@ u4 = Usuario(
     "usuario",
     "1997-10-14",
     "jooji@email.com",
-    "11900000000",
-    "00000000",
+    "(11) 90000-0000",
+    "00000-000",
 )
 u4.save()
 
@@ -84,6 +84,7 @@ p1 = Personalizacao(
     "Banco de Transferência Manual",
     "O banco de transferência manual auxilia na passagem entre o banco do carro e a \
         cadeira de rodas, facilitando a enterada e saída do condutor ou passageiro",
+    2500.0,
 )
 p1.save()
 
@@ -92,6 +93,7 @@ p2 = Personalizacao(
     "Acelerador e Freio Manual",
     "O Acelerador e Freio Manual é uma adaptação veicular PCD destinado ao uso de \
         motoristas com deficiência ou limitações nos membros superiores",
+    5000.0,
 )
 p2.save()
 
@@ -100,6 +102,7 @@ p3 = Personalizacao(
     "Pomo Giratório",
     "O pomo giratório permite que o motorista gire totalmente o volante em 360° e \
         auxilia na preensão para pessoas com limitações de movimento nas mãos",
+    500.0,
 )
 p3.save()
 
@@ -109,6 +112,7 @@ p4 = Personalizacao(
     "A Central de Comandos de Painel ao Volante é um dispositivo que permite o controle\
         dos comandos elétricos de dirigibilidade(seta, faróis, lavadores, limpadores e \
             buzinas) e do volante do veículo simultaneamente",
+    1500.0,
 )
 p4.save()
 
@@ -117,6 +121,7 @@ p5 = Personalizacao(
     "PPU",
     "O PPU - Prolongamento de Pedais Universal - é um equipamento que aproxima do \
         motorista, o controle de comandos do acelerador, freio de serviço e embreagem",
+    550.0,
 )
 p5.save()
 
@@ -134,6 +139,7 @@ ca1 = Carro(
     "2.0L EcoBoost",
     "253CV @ 5500 rpm",
     "Automática 8 Velocidades",
+    220000.00,
 )
 ca1.save()
 
@@ -160,6 +166,7 @@ ca2 = Carro(
     "2.0L Turbo EcoBoost GTDi",
     "253CV @ 5500 rpm",
     "Automática 8 Velocidades",
+    250000.0,
 )
 ca2.save()
 
@@ -182,6 +189,7 @@ ca3 = Carro(
     "1.5L EcoBoost",
     "169CV @ 5500 rpm",
     "Automática de 7 velocidades",
+    200000.0,
 )
 ca3.save()
 

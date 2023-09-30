@@ -34,6 +34,7 @@ class Cor(models.Model):
 class Personalizacao(models.Model):
     nome = models.CharField(max_length=64)
     descricao = models.TextField()
+    preco = models.FloatField()
 
     class Meta:
         db_table = "personalizacoes"
@@ -50,6 +51,7 @@ class Carro(models.Model):
     motor = models.CharField(max_length=64)
     potencia = models.CharField(max_length=32)
     transmissao = models.CharField(max_length=32)
+    preco = models.FloatField(default=0.0)
     cores = models.ManyToManyField(Cor)
     personalizacoes = models.ManyToManyField(
         Personalizacao, related_name="carro_personalizacoes"
