@@ -8,7 +8,7 @@ Carro.objects.all().delete()
 Personalizacao.objects.all().delete()
 Solicitacao.objects.all().delete()
 
-# Usuario(ID, "Nome", "Sobrenome", admin, "senha", data_nascimento, "email", "celular", "cep")
+# Usuario(ID, "Nome", "Sobrenome", admin, "senha", data_nasc, "email", "celular", "cep")
 
 u1 = Usuario(
     1,
@@ -176,8 +176,8 @@ ca3 = Carro(
     3,
     "Ford Territory",
     "Um novo conceito de design, conforto, tecnologia e segurança. Ele chega com \
-    um design totalmente novo, mais espaço interno e conforto para todos os passageiros, \
-    mais potência, com avançados recursos de tecnologia semiautônomos e segurança.",
+    um design totalmente novo, mais espaço interno e conforto para todos os passageiros\
+    , mais potência, com avançados recursos de tecnologia semiautônomos e segurança.",
     2024,
     "1.5L EcoBoost",
     "169CV @ 5500 rpm",

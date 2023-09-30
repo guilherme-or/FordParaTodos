@@ -64,9 +64,10 @@ class Carro(models.Model):
 
 
 class Solicitacao(models.Model):
-    descricao = models.TextField()
+    observacao = models.TextField()
     data_criacao = models.DateTimeField("Data de criação", auto_now_add=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=False)
+    carro = models.ForeignKey(Carro, on_delete=models.CASCADE, null=False)
     personalizacoes = models.ManyToManyField(
         Personalizacao, related_name="solicitacao_personalizacoes"
     )

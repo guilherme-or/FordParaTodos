@@ -87,18 +87,17 @@ def checkout(request):
 @require_http_methods(["POST"])
 def solicitacao(request):
     form = request.POST
+    form_carro = Carro.objects.get(pk=form.get("carro", None))
     form_observacao = form.get("observacao", "")
     session_usuario = Usuario.objects.get(pk=request.session["id_usuario"])
 
     nova_solicitacao = None
-
     try:
         nova_solicitacao = Solicitacao.objects.create(
-            descricao=form_observacao, usuario=session_usuario
+            observacao=form_observacao, usuario=session_usuario, carro=form_carro
         )
     except Exception:
         redirect("portal.checkout")
-        pass
 
     for id_personalizacao in form.getlist("personalizacoes", []):
         personalizacao = Personalizacao.objects.get(pk=id_personalizacao)
