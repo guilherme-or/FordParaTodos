@@ -202,7 +202,8 @@
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <input type="checkbox" name="personalizacoes" id="{{ personalizacao.nome }}"
-                            value="{{ personalizacao.id }}" class="personalizacoes d-none">
+                            data-preco="{{ personalizacao.preco }}" value="{{ personalizacao.id }}"
+                            class="personalizacoes d-none">
                         <label class="personalizacao__checkbox__label rounded-2" for="{{ personalizacao.nome }}">
                             <span id="unchecked-{{ personalizacao.nome }}">Adicionar</span>
                             <i class="fa-solid fa-check d-none" id="checked-{{ personalizacao.nome }}"></i>

@@ -17,20 +17,19 @@ const firstInput = document.querySelector('.cor__input_radio');
 firstInput.checked = true;
 firstInput.dispatchEvent(new Event('change'));
 
-function shoppingCart() {
-  
+function manageShoppingCart(personalizacao) {
+
 }
 
 document.querySelectorAll('.personalizacoes')
   .forEach(personalizacao => personalizacao.addEventListener('change', e => {
-    const id = e.target.id;
-    if (e.target.checked) {
-      document.getElementById(`checked-${id}`).classList.remove('d-none');
-      document.getElementById(`unchecked-${id}`).classList.add('d-none');
-    } else {
-      document.getElementById(`unchecked-${id}`).classList.remove('d-none');
-      document.getElementById(`checked-${id}`).classList.add('d-none');
-    }
+    const element = e.target;
 
-    
+    if (e.target.checked) {
+      document.getElementById(`checked-${element.id}`).classList.remove('d-none');
+      document.getElementById(`unchecked-${element.id}`).classList.add('d-none');
+    } else {
+      document.getElementById(`unchecked-${element.id}`).classList.remove('d-none');
+      document.getElementById(`checked-${element.id}`).classList.add('d-none');
+    }
   }));
