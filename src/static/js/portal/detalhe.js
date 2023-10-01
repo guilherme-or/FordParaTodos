@@ -1,4 +1,4 @@
-$('#preco_carro').mask('000.000.000.000.000,0', { reverse: true });
+// $('#preco_carro').mask('000.000.000.000.000,0', { reverse: true });
 
 document.querySelectorAll('.cor__input_radio').forEach(input => {
   input.addEventListener('change', () => {
@@ -45,10 +45,10 @@ function handleShoppingCart(personalizacao) {
 
   if (existingCartItem) {
     existingCartItem.remove();
-    subtotal.innerHTML = parseInt(subtotal.innerHTML) - parseInt(personalizacao.dataset.preco);
+    subtotal.innerHTML = parseInt(subtotal.innerHTML) - parseInt(personalizacao.dataset.preco) + ",0";
   } else {
     listElement.append(createShoppingCartItem(personalizacao));
-    subtotal.innerHTML = parseInt(subtotal.innerHTML) + parseInt(personalizacao.dataset.preco);
+    subtotal.innerHTML = parseInt(subtotal.innerHTML) + parseInt(personalizacao.dataset.preco) + ",0";
   }
 
   let itemsCount = listElement.childElementCount;
@@ -57,11 +57,10 @@ function handleShoppingCart(personalizacao) {
       'Você ainda não selecionou nenhum item' :
       itemsCount === 1 ? 'Você tem 1 item selecionado' : `Você tem ${itemsCount} itens selecionados`;
   document.getElementById('shopping-cart-item-count').innerHTML = itemsCount;
-  document.getElementById('total').innerHTML = parseInt(document.getElementById('preco_carro').innerHTML) + parseInt(subtotal.innerHTML);
+  document.getElementById('total').innerHTML = parseInt(document.getElementById('preco_carro').innerHTML) + parseInt(subtotal.innerHTML) + ",0";
 
-  // NÃO ESTÁ FORMATANDO ...
-  $('#subtotal').mask('000.000.000.000.000,0', { reverse: true });
-  $('#total').mask('000.000.000.000.000,0', { reverse: true });
+  // $('#subtotal').mask('000.000.000.000.000,0', { reverse: true });
+  // $('#total').mask('000.000.000.000.000,0', { reverse: true });
 }
 
 document.querySelectorAll('.personalizacoes')
