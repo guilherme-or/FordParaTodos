@@ -66,8 +66,13 @@ class Carro(models.Model):
 
 
 class Solicitacao(models.Model):
+    STATUS = [(1, "Enviada"), (2, "Em negociação"), (3, "Em produção"), (4, "Atendida")]
+    KEY = 12345
+
     observacao = models.TextField()
     data_criacao = models.DateTimeField("Data de criação", auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=1)
+    preco = models.FloatField(default=0)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=False)
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE, null=False)
     cor = models.ForeignKey(Cor, on_delete=models.CASCADE, null=False)
@@ -78,6 +83,15 @@ class Solicitacao(models.Model):
     class Meta:
         db_table = "solicitacoes"
         verbose_name_plural = "Solicitações"
+
+    def get_status(self):
+        return self.STATUS[self.status][1]
+
+    def get_real_id(id, key=KEY):
+        return id / key
+
+    def generate_custom_id(self):
+        return self.id * self.KEY
 
     def __str__(self):
         return self.data_criacao.strftime("%d-%m-%Y")

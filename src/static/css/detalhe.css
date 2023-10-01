@@ -2,8 +2,6 @@
     display: flex;
     width: 100%;
     background-color: #f8f4fc;
-
-
 }
 
 .div__carro__detalhe {
@@ -44,7 +42,6 @@
 }
 
 .div__personalizacoes {
-
     display: flex;
     width: 100%;
     height: 25rem;
@@ -55,11 +52,9 @@
 }
 
 .texto__info {
-
     margin-top: 2.5rem;
     margin-left: 20px;
     font-size: 15px;
-
 }
 
 .titulo__info {
@@ -72,8 +67,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-
-
 }
 
 .div__imagem__detalhe {
@@ -100,12 +93,12 @@
 .cor__input_radio__label {
     cursor: pointer;
     padding: 1.5rem;
-    border: 0.35rem #00000000 solid;
+    border: 0.35rem #4d5867 solid;
     transition: all 0.25s;
 }
 
 .bordered {
-    border: 0.35rem #8b9db8 solid !important;
+    border: 0.35rem #9bafcd solid !important;
 }
 
 .personalizacao__checkbox__label {

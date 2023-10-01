@@ -37,6 +37,7 @@ def detalhe(request, id_carro=0):
 @require_http_methods(["GET"])
 def checkout(request):
     query_dict = request.GET
+
     if request.session.get("id_usuario", None) is None:
         request.session["not_logged_data"] = {
             "carro": query_dict.get("carro", None),
@@ -92,6 +93,7 @@ def solicitacao(request):
     form = request.POST
     form_carro = Carro.objects.get(pk=form.get("carro", None))
     form_cor = Cor.objects.get(pk=form.get("cor", None))
+    form_preco = form.get("preco", 0)
     form_observacao = form.get("observacao", "")
     session_usuario = Usuario.objects.get(pk=request.session["id_usuario"])
 
@@ -99,12 +101,16 @@ def solicitacao(request):
     try:
         nova_solicitacao = Solicitacao.objects.create(
             observacao=form_observacao,
+            preco=float(form_preco.replace(",", ".")),
             usuario=session_usuario,
             carro=form_carro,
             cor=form_cor,
         )
     except Exception:
-        redirect("portal.checkout")
+        return redirect("portal.checkout")
+
+    if nova_solicitacao is None:
+        return redirect("portal.checkout")
 
     for id_personalizacao in form.getlist("personalizacoes", []):
         personalizacao = Personalizacao.objects.get(pk=id_personalizacao)
@@ -112,12 +118,34 @@ def solicitacao(request):
 
     nova_solicitacao.save()
 
+    request.session["id_nova_solicitacao"] = nova_solicitacao.id
     return redirect("portal.agradecimento")
 
 
 @require_http_methods(["GET"])
 def agradecimento(request):
-    return render(request, "portal/agradecimento.html")
+    if (
+        request.session["id_usuario"] is None
+        or request.session["id_nova_solicitacao"] is None
+    ):
+        return redirect("portal.index")
+
+    solicitacao = None
+    try:
+        solicitacao = Solicitacao.objects.get(pk=request.session["id_nova_solicitacao"])
+    except Exception:
+        return redirect("portal.index")
+
+    # request.session["id_nova_solicitacao"] = None
+    return render(
+        request,
+        "portal/agradecimento.html",
+        {
+            "custom_id": solicitacao.generate_custom_id(),
+            "solicitacao": solicitacao,
+            "personalizacoes": solicitacao.personalizacoes.all()
+        },
+    )
 
 
 @csrf_exempt

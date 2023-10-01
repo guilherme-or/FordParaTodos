@@ -65,7 +65,7 @@ u4.save()
 
 # Cor (ID, "Nome", "Codigo")
 
-co1 = Cor(1, "Branco Ártico", "#e6ebf1")
+co1 = Cor(1, "Branco Ártico", "#fafcff")
 co1.save()
 
 co2 = Cor(2, "Preto Astúrias", "#0a0a12")
@@ -201,4 +201,4 @@ ca3.cores.add(co4)
 
 ca3.save()
 
-# Solicitacao(descricao="Descricao",usuario=#)
+exit()
