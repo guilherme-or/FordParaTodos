@@ -74,3 +74,11 @@ document.querySelectorAll('.personalizacoes')
       handleShoppingCart(elemento);
     });
   });
+
+document.getElementById('shopping-cart-submit')
+  .addEventListener('click', () => {
+    if (document.getElementById('shopping-cart-items').childElementCount === 0) {
+      return;
+    }
+    document.getElementById('form-detalhe').submit();
+  });

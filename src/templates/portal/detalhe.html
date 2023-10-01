@@ -38,7 +38,7 @@
                 <span>R$ <span id="total">{{ carro.preco }}</span></span>
             </div>
 
-            <button type="submit" class="btn btn-primary px-4 py-3 mx-3 my-4">
+            <button id="shopping-cart-submit" type="button" class="btn btn-primary px-4 py-3 mx-3 my-4">
                 Checkout
                 <i class="fa-solid fa-arrow-right text-light"></i>
             </button>
@@ -47,7 +47,7 @@
 </div>
 <!-- ***************************************FINAL SHOPPING CART*********************************** -->
 
-<form method="get" action="{% url 'portal.checkout' %}">
+<form id="form-detalhe" method="get" action="{% url 'portal.checkout' %}">
     <input type="hidden" name="carro" value="{{ carro.id }}">
 
     <article class="d-none d-xxl-block">
