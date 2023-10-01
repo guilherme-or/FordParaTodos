@@ -53,8 +53,10 @@
                 <span>Total</span>
                 <span>R$20.000,00</span>
             </div>
-            <button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button" href="">
-                <span class="mx-2">Checkout<i class="fa fa-long-arrow-right ml-1 mx-1"></i></span>
+
+            <button type="submit" class="btn btn-primary px-4 py-3 mx-3 my-4">
+                Checkout
+                <i class="fa-solid fa-arrow-right text-light"></i>
             </button>
         </div>
     </div>
@@ -71,13 +73,6 @@
                     <i class="fa-solid fa-arrow-left me-2"></i>
                     Voltar
                 </a>
-
-                <!-- botão do cart  -->
-                <button class="btn btn-primary px-3 py-2 my-3 mx-4" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="width: 80px; height: 40px;">
-                    <span class="shopping-cart-item-count">0</span>
-                    <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
-                </button>
             </div>
         </div>
 
@@ -129,17 +124,22 @@
         </div>
     </article>
 
+<!-- **********************INICIO BOTAO CART***************************************** -->
+    <div class="fixed-bottom d-flex justify-content-end align-items-center"
+        style="width: 8%; height: 8%; left: 92%; bottom: 44%; position: fixed;">
+        <button class="btn btn-primary px-3 py-2 my-3 mx-4" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="border-radius: 70%;">
+            <span class="shopping-cart-item-count">0</span>
+            <i class="fa-solid fa-cart-shopping my-3" style="color: #ffffff;"></i>
+        </button>
+    </div>
+<!-- **********************FINAL BOTAO CART***************************************** -->
+
     <article class="d-xxl-none container-fluid bg-light">
         <a class="btn btn-primary px-3 py-2 my-3" href="{% url 'portal.catalogo' %}">
             <i class="fa-solid fa-arrow-left me-2"></i>
             Voltar
         </a>
-        <!-- botão do cart  -->
-        <button class="btn btn-primary px-3 py-2 my-3 mx-4" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="width: 80px; height: 40px;">
-            <span class="shopping-cart-item-count">0</span>
-            <i class="fa-solid fa-cart-shopping" style="color: #ffffff;"></i>
-        </button>
 
         <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="w-100 img-fluid my-3"
             alt="Imagem do {{ carro.modelo }}">
@@ -222,6 +222,9 @@
         </div>
     </main>
 </form>
+
+
+
 {% endblock %}
 
 {% block scripts%}
