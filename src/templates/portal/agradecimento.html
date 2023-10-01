@@ -2,5 +2,51 @@
 {% load static %}
 {% block title %}Finalização{% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/agradecimento.css' %}">
+{% endblock %}
+
 {% block content %}
+<article class="carousel slide d-none d-xl-block">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="height: 100vh;">
+            <img src="{% static 'img/mustang-bg.png' %}" class="bg d-block w-100 bg "
+                alt="Mustang em uma estrada com árvores em sua volta" style="filter: brightness(50%);">
+
+            <div class="carousel-caption carousel-caption-left">
+                <h3>Sua consulta foi enviada!<br>
+                    Agradecemos por confiar em nossa qualidade, inovaçãoes e compromisso em proporcionar experiências de
+                    condução excepcionais. Sua confiança nos impulsiona a ir além, sempre.<br>
+                    <br>
+                    Em breve, entraremos em contato.
+                </h3>
+            </div>
+            <div class="carousel-caption carousel-caption-link">
+                <div class="bg-blur" style="height: 100%;">
+
+                </div>
+
+                <div class="link-voltar">
+                    <a class="btn px-2 py-3" style="width: 200px; color: #fff; background-color: rgba(255, 255, 255, 0.219);"
+                    href="{% url 'portal.index' %}">
+                    <i class="fa-solid fa-arrow-left ms-1 mx-3" style="color: #fff;"></i> Página Inicial </a>
+                </div>
+                
+            </div> 
+        </div>
+</article>
+
+<section class="bg-white px-4 py-2 d-xl-none d-block">
+    
+    <h3 class="mx-3 my-5 text-start">
+        Sua consulta foi enviada!<br>
+                    Agradecemos por confiar em nossa qualidade, inovaçãoes e compromisso em proporcionar experiências de
+                    condução excepcionais. Sua confiança nos impulsiona a ir além, sempre.<br>
+                    <br>
+                    Em breve, entraremos em contato.
+    </h3>
+
+    <a class="btn btn-primary px-2 py-3 my-5" href="{% url 'portal.index' %}" style="width: 200px;"> 
+        <i class="fa-solid fa-arrow-left ms-1 mx-3" style="color: #fff;"></i> Página Inicial </a>
+</section>
 {% endblock %}

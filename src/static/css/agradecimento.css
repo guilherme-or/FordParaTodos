@@ -1,0 +1,50 @@
+.carousel-caption-link{
+    left: 44%;
+    text-align: left;
+    max-width: 45%;
+    right: auto;
+    padding:5px;
+    top: auto;
+    bottom: 30%;
+    word-spacing: 1px;
+    
+}
+
+.carousel-caption-left {
+    left: 44%;
+    text-align: left;
+    max-width: 45%;
+    right: auto;
+    padding:5px;
+    top: 25%;
+    bottom: auto;
+    word-spacing: 1px;
+}
+
+.blur {
+    font-size: 14px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 80%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 2);
+    /* fallback color for old browsers */
+    border-radius: 8px;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+    border: 1px solid #fff;
+}
+
+.semi-transparent-button:hover,
+.semi-transparent-button:focus,
+.semi-transparent-button:active {
+    background: #fff;
+    color: #000;
+    transition: all 0.2s ease-in;
+}
+
+
