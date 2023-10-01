@@ -136,7 +136,10 @@ def agradecimento(request):
     except Exception:
         return redirect("portal.index")
 
-    # request.session["id_nova_solicitacao"] = None
+    # TODO: Enviar email para o cliente
+    print("Enviando email...")
+
+    request.session["id_nova_solicitacao"] = None
     return render(
         request,
         "portal/agradecimento.html",
