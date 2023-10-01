@@ -21,37 +21,21 @@
     <div class="offcanvas-body">
         <p id="shopping-cart-item-count-text">Você ainda não selecionou nenhum item</p>
 
-        <div id="shopping-cart-items">
-            <div class="d-flex justify-content-between align-items-center mt-3 p-2 rounded">
-                <div class="d-flex flex-row">
-                    <img src="{% static 'img/customizacoes/Banco de Transferência Manual.png' %}"
-                        class="rounded mx-2 my-2" alt="Imagem de {{ personalizacao.nome }}" style="height: 50px;
-                                                width: auto;">
-                    <span class="fw-bold d-block mx-3">Banco de transferência manual</span>
-                </div>
-
-                <div class="d-flex flex-row align-items-center">
-                    <span class="d-block ml-3 fw-bold">R$20.000,00</span>
-                    <button class="mx-3" style="cursor: pointer;">
-                        <i class="fa-solid fa-trash-can" style="color: #000000;"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <div id="shopping-cart-items"></div>
 
         <div id="shopping-cart-resume">
             <hr>
             <div class="d-flex justify-content-between">
                 <span>Subtotal</span>
-                <span>R$20.000,00</span>
+                <span>R$ <span id="subtotal">0</span></span>
             </div>
             <div class="d-flex justify-content-between">
-                <span>Frete</span>
-                <span>R$0,00</span>
+                <span>Preço do Carro</span>
+                <span>R$ <span id="preco_carro">{{ carro.preco }}</span></span>
             </div>
             <div class="d-flex justify-content-between">
                 <span>Total</span>
-                <span>R$20.000,00</span>
+                <span>R$ <span id="total">0</span></span>
             </div>
 
             <button type="submit" class="btn btn-primary px-4 py-3 mx-3 my-4">
@@ -124,16 +108,16 @@
         </div>
     </article>
 
-<!-- **********************INICIO BOTAO CART***************************************** -->
+    <!-- **********************INICIO BOTAO CART***************************************** -->
     <div class="fixed-bottom d-flex justify-content-end align-items-center"
         style="width: 8%; height: 8%; left: 92%; bottom: 44%; position: fixed;">
-        <button class="btn btn-primary px-3 py-2 my-3 mx-4" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="border-radius: 70%;">
-            <span class="shopping-cart-item-count">0</span>
+        <button class="btn btn-primary px-3 py-1 my-3 mx-4" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <span id="shopping-cart-item-count">0</span>
             <i class="fa-solid fa-cart-shopping my-3" style="color: #ffffff;"></i>
         </button>
     </div>
-<!-- **********************FINAL BOTAO CART***************************************** -->
+    <!-- **********************FINAL BOTAO CART***************************************** -->
 
     <article class="d-xxl-none container-fluid bg-light">
         <a class="btn btn-primary px-3 py-2 my-3" href="{% url 'portal.catalogo' %}">
@@ -228,5 +212,7 @@
 {% endblock %}
 
 {% block scripts%}
+<script src="{% static 'libs/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'libs/jquery.mask.min.js' %}"></script>
 <script src="{% static 'js/portal/detalhe.js' %}"></script>
 {% endblock %}
