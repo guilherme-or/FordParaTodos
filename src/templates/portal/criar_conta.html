@@ -20,6 +20,9 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="card-title mb-3 fw-bold">Bem vindo a Ford para Todos!</h5>
+                    <div class="mb-4">
+                        <a style="color: #102587;" href="{% url 'portal.login' %}">Já possui uma conta? Faça login</a>
+                    </div>
                     {% if error %}
                     <p class="text-danger mb-2">{{ error }}</p>
                     {% endif %}

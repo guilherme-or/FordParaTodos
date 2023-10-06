@@ -26,8 +26,8 @@
             </div>
 
             <div class="col-lg-6 d-flex justify-content-center">
-                <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="img-fluid"
-                    alt="Imagem do {{ carro.modelo }}">
+                <img src="{% static 'img/carros' %}/{{ carro.modelo }} {{ cor.nome }}.png" class="img-fluid"
+                    alt="Imagem do {{ carro.modelo }} {{ cor.nome }}">
             </div>
 
             <div class="col-lg-3 d-flex justify-content-end align-items-end">
@@ -122,4 +122,5 @@
 <script>
     $('#montante').mask('000.000.000.000.000,0', { reverse: true });
 </script>
+
 {% endblock %}
