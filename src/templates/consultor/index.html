@@ -1,0 +1,91 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}Consultor{% endblock %}
+
+{% block content %}
+<!-- Informações consultor/ -->
+<aside class="w-100 p-5 text-white" style="background-color: #00095b;">
+    <div class="d-flex flex-column justify-content-center align-items-center my-4">
+        <h2>Olá, {{ consultor.nome }} {{ consultor.sobrenome }}!</h2>
+        <p class="mb-0">Você está na <span class="fw-bold">área do consultor</span></p>
+    </div>
+</aside>
+<!-- /Informações consultor -->
+
+<main class="row" style="margin: auto !important;">
+    <!-- Filtros/ -->
+    <section class="col-xl-2 py-4 d-flex flex-column align-items-center justify-content-center"
+        style="background-color: #fff;">
+        <h3 class="text-center">Filtros</h3>
+        <nav class="nav nav-pills flex-column mb-lg-5">
+            <div class="type">
+                <a class="nav-link item_categoria" href="#">DATA</a>
+                <nav class="nav nav-pills flex-column">
+                    <li class="list-group-item">
+                        <input class="form-check-input ms-3 my-1 box_checkbox" type="radio" name="data"
+                            id="firstCheckbox">
+                        <label class="form-check-label item_checkbox" for="firstCheckbox">Crescente</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input ms-3 my-1 box_checkbox" type="radio" name="data"
+                            id="secondCheckbox">
+                        <label class="form-check-label item_checkbox" for="secondCheckbox">Decrescente</label>
+                    </li>
+                </nav>
+            </div>
+
+            <div class="type">
+                <a class="nav-link item_categoria" href="#">STATUS</a>
+                <nav class="nav nav-pills flex-column">
+                    <li class="list-group-item">
+                        <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                            id="thirdCheckbox">
+                        <label class="form-check-label item_checkbox" for="thirdCheckbox">Enviada</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                            id="fourthCheckbox">
+                        <label class="form-check-label item_checkbox" for="fourthCheckbox">Em negociação</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                            id="fifthCheckbox">
+                        <label class="form-check-label item_checkbox" for="fifthCheckbox">Em produção</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                            id="sixthCheckbox">
+                        <label class="form-check-label item_checkbox" for="sixthCheckbox">Atendida</label>
+                    </li>
+                </nav>
+            </div>
+        </nav>
+    </section>
+    <!-- /Filtros -->
+
+    <!-- Solicitações/ -->
+    <section class="col-xl-10 py-4 px-3 bg-light">
+        <div class="row g-3">
+            {% if solicitacoes %}
+            {% for solicitacao in solicitacoes %}
+            <div class="col">
+                <article class="card border-0 rounded-4">
+                    <main class="card-body">
+                        <h3 class="fs-4 mb-0 btn btn-link">Solicitação {{ solicitacao.generate_custom_id }}</h3>
+                        <h6><span class="fw-bold">Criado em:</span> {{ solicitacao.data_criacao }}</h6>
+                        <h6><span class="fw-bold">Status:</span> {{ solicitacao.get_status }}</h6>
+                    </main>
+                </article>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col d-flex justify-content-center align-items-center">
+                <h2>Nenhuma solicitação foi encontrada</h2>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <!-- /Solicitações -->
+</main>
+
+{% endblock %}

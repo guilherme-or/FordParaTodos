@@ -18,14 +18,25 @@
                         placeholder="Pesquise seu carro aqui" aria-label="Pesquisar">
                 </form>
             </ul>
-            <button type="button" class="btn btn-primary py-2">Fale conosco</button>
+            {% if request.session.consultor %}
+            <a href="{% url 'portal.consultor.index' %}" class="btn btn-primary py-2">Área do consultor</a>
+            {% else %}
+            <a href="https://www.ford.com.br/fale-conosco/" class="btn btn-primary py-2">Fale conosco</a>
+            {% endif %}
             <button type="button" class="btn btn-outline-primary rounded-circle ms-5 me-4 my-1" id="configuration">
                 <i class="fa-solid fa-gear"></i>
             </button>
-            <a href="{% url 'portal.login' %}" class="btn btn-outline-primary rounded-circle" id="user-login">
-                <i class="fa-solid fa-user"></i>
-                <!-- <p class="m-0"></p> -->
+            {% if request.session.id_usuario %}
+            <a href="{% url 'portal.logout' %}" class="btn btn-outline-primary rounded-circle" id="user-login"
+                title="Fazer logout">
+                <p class="m-0 fw-bold">{{ request.session.nome|make_list|first|upper }}</p>
             </a>
+            {% else %}
+            <a href="{% url 'portal.login' %}" class="btn btn-outline-primary rounded-circle" id="user-login"
+                title="Fazer login">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
         </div>
     </main>
 </nav>

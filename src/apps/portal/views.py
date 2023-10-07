@@ -146,7 +146,7 @@ def agradecimento(request):
         {
             "custom_id": solicitacao.generate_custom_id(),
             "solicitacao": solicitacao,
-            "personalizacoes": solicitacao.personalizacoes.all()
+            "personalizacoes": solicitacao.personalizacoes.all(),
         },
     )
 
@@ -181,6 +181,13 @@ def login(request):
             return render(request, "portal/login.html", usuario_not_found)
 
         request.session["id_usuario"] = usuario.id
+        request.session["consultor"] = usuario.admin
+        request.session["nome"] = usuario.nome
+        request.session["email"] = usuario.email
+
+        if usuario.admin:
+            return redirect("portal.consultor.index")
+
         redirect_page = request.session.get("next_page", "portal.index")
         return redirect(redirect_page)
 
@@ -243,3 +250,18 @@ def logout(request):
     request.session.flush()
 
     return redirect("portal.index")
+
+
+@require_http_methods(["GET"])
+def consultor(request):
+    if not request.session.get("consultor", False):
+        return redirect(request.META["HTTP_REFERER"])
+
+    consultor = Usuario.objects.get(pk=request.session.get("id_usuario"))
+    solicitacoes = Solicitacao.objects.all()
+
+    return render(
+        request,
+        "consultor/index.html",
+        {"consultor": consultor, "solicitacoes": solicitacoes},
+    )

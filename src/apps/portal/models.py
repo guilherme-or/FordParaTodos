@@ -71,7 +71,7 @@ class Solicitacao(models.Model):
 
     observacao = models.TextField()
     data_criacao = models.DateTimeField("Data de criação", auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=1)
+    status = models.IntegerField(choices=STATUS, default=0)
     preco = models.FloatField(default=0)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=False)
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE, null=False)
