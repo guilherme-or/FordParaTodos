@@ -3,7 +3,9 @@
 document.querySelectorAll('.cor__input_radio').forEach(input => {
   input.addEventListener('change', () => {
     const labels = document.querySelectorAll('.cor__input_radio__label')
-    labels.forEach(label => label.classList.remove('bordered'));
+    labels.forEach(label => {
+      label.classList.remove('bordered');
+    });
     if (!input.checked) { return; }
 
     labels.forEach(label => {
@@ -11,6 +13,14 @@ document.querySelectorAll('.cor__input_radio').forEach(input => {
         return;
       }
       label.classList.add("bordered");
+      const imagePath = label.dataset.image;
+      if (imagePath == null) {
+        return;
+      }
+      document.querySelectorAll('.carro-img')
+      .forEach(img => {
+        img.setAttribute('src', imagePath);
+      })
     });
   });
 });

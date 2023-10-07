@@ -63,7 +63,7 @@
         <div class="pagina">
             <div class="div__carro__detalhe">
                 <div class="bg">
-                    <img src="{% static 'img/carros' %}/{{ carro.modelo }}{{ cor.nome }}.png" class="carro"
+                    <img src="{% static 'img/carros' %}/{{ carro.modelo }}/Branco Ártico.png" class="carro carro-img"
                         alt="Imagem do {{ carro.modelo }}">
                 </div>
             </div>
@@ -75,7 +75,8 @@
                     <input type="radio" id="{{ cor.nome }}" class="d-none cor__input_radio" name="cor"
                         value="{{ cor.id }}">
                     <label class="cor__input_radio__label rounded-circle" for="{{ cor.nome }}"
-                        style="background-color: {{ cor.codigo }};" title="{{ cor.nome }}, {{ cor.codigo }}"></label>
+                        style="background-color: {{ cor.codigo }};" title="{{ cor.nome }}, {{ cor.codigo }}"
+                        data-image="{% static 'img/carros' %}/{{ carro.modelo }}/{{ cor.nome }}.png"></label>
                 </div>
                 {% endfor %}
             </div>
@@ -125,7 +126,7 @@
             Voltar
         </a>
 
-        <img src="{% static 'img/carros' %}/{{ carro.modelo }}.png" class="w-100 img-fluid my-3"
+        <img src="{% static 'img/carros' %}/{{ carro.modelo }}/Branco Ártico.png" class="w-100 img-fluid my-3 carro-img"
             alt="Imagem do {{ carro.modelo }}">
 
         <section class="card border-0 rounded-4">
