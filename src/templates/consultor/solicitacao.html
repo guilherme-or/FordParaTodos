@@ -16,7 +16,9 @@
 
     <select class="form-select border-0 bg-light px-2 py-3" name="status" id="status">
         {% for status in solicitacao.STATUS %}
-        <option value="{{ status.0 }}">{{ status.1 }}</option>
+        <option value="{{ status.0 }}" {% if solicitacao.status == status.0 %}selected{% endif %}>
+            {{ status.1 }}
+        </option>
         {% endfor %}
     </select>
 </main>
