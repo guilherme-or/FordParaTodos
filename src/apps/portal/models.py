@@ -66,7 +66,7 @@ class Carro(models.Model):
 
 
 class Solicitacao(models.Model):
-    STATUS = [(1, "Enviada"), (2, "Em negociação"), (3, "Em produção"), (4, "Atendida")]
+    STATUS = [(0, "Enviada"), (1, "Em negociação"), (2, "Em produção"), (3, "Atendida")]
     KEY = 12345
 
     observacao = models.TextField()

@@ -13,5 +13,11 @@
     {% for personalizacao in personalizacoes %}
     <h2>{{ personalizacao }}</h2>
     {% endfor %}
+
+    <select class="form-select border-0 bg-light px-2 py-3" name="status" id="status">
+        {% for status in solicitacao.STATUS %}
+        <option value="{{ status.0 }}">{{ status.1 }}</option>
+        {% endfor %}
+    </select>
 </main>
 {% endblock %}
