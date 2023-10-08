@@ -13,4 +13,9 @@ urlpatterns = [
     path("login", views.login, name="portal.login"),
     path("logout", views.logout, name="portal.logout"),
     path("consultor", views.consultor, name="portal.consultor.index"),
+    path(
+        "consultor/solicitacao/<int:id_solicitacao>",
+        views.consultor_solicitacao,
+        name="portal.consultor.solicitacao",
+    ),
 ]

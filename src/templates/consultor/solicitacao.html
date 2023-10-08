@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}Consultor{% endblock %}
+
+{% block content %}
+<main>
+    <h1>{{ solicitacao.generate_custom_id }}</h1>
+    <h1>{{ solicitacao.data_criacao }}</h1>
+    <h1>{{ solicitacao.observacao }}</h1>
+    <h1>{{ solicitacao.usuario.nome }} {{ solicitacao.usuario.sobrenome }}</h1>
+    <h1>{{ solicitacao.carro.modelo }}</h1>
+    <h1>{{ solicitacao.cor.nome }}</h1>
+    {% for personalizacao in personalizacoes %}
+    <h2>{{ personalizacao }}</h2>
+    {% endfor %}
+</main>
+{% endblock %}

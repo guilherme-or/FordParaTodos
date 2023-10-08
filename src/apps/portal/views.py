@@ -255,7 +255,7 @@ def logout(request):
 @require_http_methods(["GET"])
 def consultor(request):
     if not request.session.get("consultor", False):
-        return redirect(request.META["HTTP_REFERER"])
+        return redirect("portal.index")
 
     consultor = Usuario.objects.get(pk=request.session.get("id_usuario"))
     solicitacoes = Solicitacao.objects.all()
@@ -264,4 +264,18 @@ def consultor(request):
         request,
         "consultor/index.html",
         {"consultor": consultor, "solicitacoes": solicitacoes},
+    )
+
+
+@require_http_methods(["GET"])
+def consultor_solicitacao(request, id_solicitacao=0):
+    solicitacao = get_object_or_404(Solicitacao, pk=id_solicitacao)
+
+    return render(
+        request,
+        "consultor/solicitacao.html",
+        {
+            "solicitacao": solicitacao,
+            "personalizacoes": solicitacao.personalizacoes.all(),
+        },
     )
