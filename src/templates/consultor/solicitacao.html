@@ -7,14 +7,16 @@
     <i class="fa-solid fa-arrow-left me-2"></i>
     Pedidos
 </a>
-<main class="card mx-5 my-5 p-lg-5">
-    <h1>Pedido #{{ solicitacao.generate_custom_id }}</h1>
-    <h5>{{ solicitacao.data_criacao }}</h5>
+
+<main class="card mx-5 my-5 p-lg-5 bg-light border-0">
+    <h1>Solicitação #{{ solicitacao.generate_custom_id }}</h1>
+    <h5 class="text-muted">{{ solicitacao.data_criacao }}</h5>
 
     <div class="row text-start">
 
         <div class="col-md-5 p-4">
-            <h2>{{ solicitacao.carro.modelo }} {{ solicitacao.cor.nome }}</h2>
+            <h2>{{ solicitacao.carro.modelo }} </h2>
+            <h5 class="mb-3 text-muted">{{ solicitacao.cor.nome }}</h5>
             <img src="{% static 'img/carros' %}/{{ solicitacao.carro.modelo }}/{{ solicitacao.cor.nome }}.png" class="img-fluid"
             alt="Imagem do {{ solicitacao.carro.modelo }} {{ solicitacao.cor.nome }}">
         </div>
@@ -23,11 +25,13 @@
             <div class="row text-start">
                 <div class="col-md-4">
                     <h3>
-                        Nome do solicitante:
+                        Solicitante:
                     </h3>
                 </div>
                 <div class="col-md-8">
                     <h2>{{ solicitacao.usuario.nome }} {{ solicitacao.usuario.sobrenome }}</h2>
+                    <h5 class="text-muted">{{ solicitacao.usuario.email }}</h5>
+                    <h5 class="text-muted">{{ solicitacao.usuario.celular }}</h5>
                 </div>
             </div>
 
@@ -38,7 +42,13 @@
                     </h3>
                 </div>
                 <div class="col-md-8">
-                    <h5>{{ solicitacao.observacao }}</h5>
+                    <h5>
+                        {% if solicitacao.observacao %}
+                            {{ solicitacao.observacao }}
+                            {% else %}
+                            Nenhuma observação
+                        {% endif %}
+                    </h5>
                 </div>
             </div>
 
@@ -59,11 +69,11 @@
             <div class="row text-start">
                 <div class="col-md-4">
                     <h3>
-                        Status do Pedido:
+                        Status da Solicitação:
                     </h3>
                 </div>
                 <div class="col-md-8">
-                    <select class="form-select border-0 bg-light px-2 py-3" name="status" id="status">
+                    <select class="form-select border-0 bg-white px-2 py-3 fs-5" name="status" id="status">
                         {% for status in solicitacao.STATUS %}
                         <option value="{{ status.0 }}" {% if solicitacao.status == status.0 %}selected{% endif %}>
                             {{ status.1 }}
@@ -78,8 +88,6 @@
             </div>
         </div>
         </div>
-
-        
 
 </main>
 {% endblock %}
