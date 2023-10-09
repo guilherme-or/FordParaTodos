@@ -1,0 +1,64 @@
+.carousel-caption-link{
+    left: 7%;
+    text-align: left;
+    max-width: 35%;
+    right: auto;
+    padding:5px;
+    top: auto;
+    bottom: 10%;
+    word-spacing: 1px;
+}
+
+.carousel-control-prev{
+    width: 5%;
+    height: auto;
+}
+
+.carousel-control-prev{
+    width: 5%;
+    height: auto;
+}
+
+.card_size{
+    height: 24rem;
+}
+
+.card_img_size{
+    position: absolute;
+    width: 25rem;
+    top: 45%; left: 0; right: 3rem; bottom: 10px;
+}
+
+
+.card_img_mustang{
+    position: absolute;
+    width: 25rem;
+    top: 45%; left: 0; right: 3rem; bottom: 10px;
+}
+
+.carousel-caption-left {
+    left: 8%;
+    text-align: left;
+    max-width: 35%;
+    right: auto;
+    padding:5px;
+    top: 14%;
+    bottom: auto;
+    word-spacing: 1px;
+}
+
+.carousel-caption-right{
+    right: 12%;
+    text-align: left;
+    max-width: 30%;
+    left: auto;
+    padding:5px;
+    bottom: 10%;
+    top: auto;
+    word-spacing: 1px;
+}
+
+.text-ford{
+    font-weight: 600;
+    font-style: italic;
+}

@@ -1,0 +1,42 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg">
+    <main class="container-fluid px-5 py-2">
+        <a class="navbar-brand d-flex flex-column align-items-center justify-content-center"
+            href="{% url 'portal.index' %}">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" width="124" height="48">
+            <h5 class="nav__title">Para todos.</h5>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content"
+            aria-controls="navbar-content" aria-expanded="false" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-content">
+            <ul class="navbar-nav ms-lg-5 me-auto mb-2 mb-lg-0">
+                <form id="form-search" class="d-flex align-items-center my-sm-3" role="search" style="width: 20rem;">
+                    <label class="mx-2" for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+                    <input id="search" class="form-control rounded-pill py-2 px-4" type="search"
+                        placeholder="Pesquise seu carro aqui" aria-label="Pesquisar">
+                </form>
+            </ul>
+            {% if request.session.consultor %}
+            <a href="{% url 'portal.consultor.index' %}" class="btn btn-primary py-2">Área do consultor</a>
+            {% else %}
+            <a href="https://www.ford.com.br/fale-conosco/" class="btn btn-primary py-2">Fale conosco</a>
+            {% endif %}
+            <button type="button" class="btn btn-outline-primary rounded-circle ms-5 me-4 my-1" id="configuration">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            {% if request.session.id_usuario %}
+            <a href="{% url 'portal.logout' %}" class="btn btn-outline-primary rounded-circle" id="user-login"
+                title="Fazer logout">
+                <p class="m-0 fw-bold">{{ request.session.nome|make_list|first|upper }}</p>
+            </a>
+            {% else %}
+            <a href="{% url 'portal.login' %}" class="btn btn-outline-primary rounded-circle" id="user-login"
+                title="Fazer login">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {% endif %}
+        </div>
+    </main>
+</nav>

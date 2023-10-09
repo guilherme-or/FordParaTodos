@@ -1,0 +1,85 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}Finalização{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/agradecimento.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="modal fade" id="modalSolicitacao" tabindex="-1" aria-labelledby="modalSolicitacaoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4" id="modalSolicitacaoLabel">Solicitação <b>{{ custom_id }}</b></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 class="mb-1"><span class="text-muted">Carro:</span> {{ solicitacao.carro.modelo }}</h4>
+                <h5 class="mb-3"><span class="text-muted">Cor:</span> {{ solicitacao.cor.nome }}</h5>
+                <h4 class="mb-2 text-muted">Personalizações:</h4>
+                {% for personalizacao in personalizacoes %}
+                <h5 class="mb-1">{{ personalizacao.nome }}</h5>
+                {% endfor %}
+                <h4 class="mt-3"><span class="text-muted">Preço:</span> {{ solicitacao.preco }}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<article class="carousel slide d-none d-xl-block">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="height: 100vh;">
+            <img src="{% static 'img/mustang-bg.png' %}" class="bg d-block w-100 bg "
+                alt="Mustang em uma estrada com árvores em sua volta" style="filter: brightness(50%);">
+
+            <div class="carousel-caption carousel-caption-left mx-3 my-5 text-start">
+                <h3 class="mb-4">Sua consulta foi enviada!</h3>
+                <h4 class="mb-2">O número da sua solicitação é: <b>{{ custom_id }}</b>.</h4>
+                <h4 class="mb-2">
+                    Um e-mail com os detalhes foi enviado para você em
+                    <b>{{ solicitacao.usuario.email }}</b>.
+                </h4>
+                <h4 class="mb-4">
+                    Você também pode vê-los clicando
+                    <u style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalSolicitacao">aqui</u>.
+                </h4>
+                <h4 class="mb-4">
+                    Agradecemos por confiar em nossa qualidade, inovações e compromisso em proporcionar experiências de
+                    condução excepcionais. Sua confiança nos impulsiona a ir além, sempre.
+                </h4>
+                <h4 class="mb-5">Em breve, entraremos em contato.</h4>
+                <a class="btn btn-blur mt-3 px-2 py-3"
+                    style="width: 200px; color: #fff; background-color: rgba(255, 255, 255, 0.219);"
+                    href="{% url 'portal.index' %}">
+                    <i class="fa-solid fa-arrow-left ms-1 mx-3" style="color: #fff;"></i>
+                    Página Inicial
+                </a>
+            </div>
+        </div>
+</article>
+
+<section class="bg-white px-4 py-2 d-xl-none d-block">
+    <h3 class="mb-4">Sua consulta foi enviada!</h3>
+    <h4 class="mb-2">O número da sua solicitação é: <b>{{ custom_id }}</b>.</h4>
+    <h4 class="mb-2">
+        Um e-mail com os detalhes foi enviado para você em
+        <b>{{ solicitacao.usuario.email }}</b>.
+    </h4>
+    <h4 class="mb-4">
+        Você também pode vê-los clicando
+        <u style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalSolicitacao">aqui</u>.
+    </h4>
+    <h4 class="mb-4">
+        Agradecemos por confiar em nossa qualidade, inovações e compromisso em proporcionar experiências de
+        condução excepcionais. Sua confiança nos impulsiona a ir além, sempre.
+    </h4>
+    <h4 class="mb-4">Em breve, entraremos em contato.</h4>
+
+    <a class="btn btn-primary px-2 py-3 my-5" href="{% url 'portal.index' %}" style="width: 200px;">
+        <i class="fa-solid fa-arrow-left ms-1 mx-3" style="color: #fff;"></i> Página Inicial </a>
+</section>
+{% endblock %}

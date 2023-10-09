@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | Ford Para Todos</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+
+    <link href="{% static 'libs/bootstrap-5.3.2-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/globals.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+
+    {% block styles %}{% endblock %}
+</head>
+
+<body>
+    {% include 'layout/navbar.html' %}
+    {% block content %}{% endblock %}
+    {% include 'layout/footer.html' %}
+    <script src="{% static 'libs/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'libs/htmx.min.js' %}"></script>
+    <script type="module" src="{% static 'js/utils.js' %}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

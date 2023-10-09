@@ -1,0 +1,142 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}Catálogo{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/catalogo.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-4 sidebar d-none d-lg-block">
+            <nav id="navbar-example3">
+                <a class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3" href="{% url 'portal.index' %}">
+                    <i class="fa-solid fa-arrow-left me-2"></i>
+                    Voltar
+                </a>
+
+                <nav class="nav nav-pills flex-column">
+                    <div class="type">
+                        <a class="nav-link item_categoria" href="#categoria">CATEGORIA</a>
+                        <nav class="nav nav-pills flex-column">
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="firstCheckbox">
+                                <label class="form-check-label item_checkbox" for="firstCheckbox">Picape</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="secondCheckbox">
+                                <label class="form-check-label item_checkbox" for="secondCheckbox">SUV</label>
+                            </li>
+                        </nav>
+                    </div>
+
+                    <div class="type">
+                        <a class="nav-link item_categoria" href="#categoria">CAPACIDADE</a>
+                        <nav class="nav nav-pills flex-column">
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="thirdCheckbox">
+                                <label class="form-check-label item_checkbox" for="thirdCheckbox">2-4 lugares</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="fourthCheckbox">
+                                <label class="form-check-label item_checkbox" for="fourthCheckbox">2-5 lugares</label>
+                            </li>
+                        </nav>
+                    </div>
+                </nav>
+            </nav>
+        </div>
+
+        <div class="collapse d-lg-none" id="navbarToggleExternalContent">
+            <div class="p-4 d-lg-none">
+                <nav class="nav nav-pills flex-column">
+                    <div class="type">
+                        <a class="nav-link item_categoria" href="#categoria">CATEGORIA</a>
+                        <nav class="nav nav-pills flex-column">
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="firstCheckbox">
+                                <label class="form-check-label item_checkbox" for="firstCheckbox">Picape</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="secondCheckbox">
+                                <label class="form-check-label item_checkbox" for="secondCheckbox">SUV</label>
+                            </li>
+                        </nav>
+                    </div>
+
+                    <div class="type">
+                        <a class="nav-link item_categoria" href="#categoria">CAPACIDADE</a>
+                        <nav class="nav nav-pills flex-column">
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="thirdCheckbox">
+                                <label class="form-check-label item_checkbox" for="thirdCheckbox">2-4 lugares</label>
+                            </li>
+                            <li class="list-group-item">
+                                <input class="form-check-input ms-3 my-1 box_checkbox" type="checkbox" value=""
+                                    id="fourthCheckbox">
+                                <label class="form-check-label item_checkbox" for="fourthCheckbox">2-5 lugares</label>
+                            </li>
+                        </nav>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <nav class="navbar d-lg-none bg-white">
+            <div class="container-fluid d-lg-none">
+                
+                    <a class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3" href="{% url 'portal.index' %}">
+                        <i class="fa-solid fa-arrow-left me-2"></i>
+                        Voltar
+                    </a>
+                
+                
+                    <button class="navbar-toggler d-lg-none px-3 py-2 mt-3 mb-5 ms-3" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+                        aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
+                        style="background-color:#00095b; border: none;">
+                        <div class="d-flex justify-content-end">
+                            <i class="fa-solid fa-bars me-2 my-1" style="color: #ffffff;"></i>
+                            <p class="mx-2 my-2" style="font-size: smaller; color: white;">Filtrar</p>
+                        </div>
+                    </button>
+                
+            </div>
+        </nav>
+
+        <div class="col-8 catalogo">
+            <div data-bs-spy="scroll" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
+                <div class="row p-3 bg-light">
+                    {% for carro in carros %}
+                    <div class="col-xl-4 my-2">
+                        <section class="card border-0 h-100">
+                            <main class="card-body">
+                                <h5 class="card-title">{{ carro.modelo }}</h5>
+                                <p class="text-muted">{{ carro.ano }}</p>
+                                <img src="{% static 'img/catalogo'%}/{{ carro.modelo }}.png" class="card__img_size w-75"
+                                    alt="Imagem do {{ carro.modelo }}">
+                            </main>
+                            <footer class="row align-items-center py-3 px-4">
+                                <div class="col-lg-6 my-1 d-flex justify-content-start">
+                                    <p class="text-muted text-center m-0">{{ carro.motor }}</p>
+                                </div>
+                                <div class="col-lg-6 my-1 d-flex justify-content-end">
+                                    <a href="{% url 'portal.detalhe' carro.id %}" class="btn btn-primary">Escolher</a>
+                                </div>
+                            </footer>
+                        </section>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

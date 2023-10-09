@@ -1,0 +1,12 @@
+.confirmado {
+  background-color: #659711 !important;
+}
+
+.bg-gray {
+  background-color: #ececec;
+}
+
+.bg-checkout {
+  background-image: url("bg_checkout.png");
+  /* background-repeat: no-repeat; */
+}

@@ -1,0 +1,87 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}Consultor{% endblock %}
+
+{% block content %}
+<a class="btn btn-primary px-3 py-2 mx-5" href="{% url 'portal.consultor.index' %}">
+    <i class="fa-solid fa-arrow-left me-2"></i>
+    Pedidos
+</a>
+
+<main class="card mx-5 my-5 p-lg-5 bg-light border-0">
+    <h1>Solicitação #{{ solicitacao.generate_custom_id }}</h1>
+    <h5 class="text-muted">{{ solicitacao.data_criacao }}</h5>
+
+    <div class="row text-start">
+        <div class="col-md-5 p-4">
+            <h2>{{ solicitacao.carro.modelo }} </h2>
+            <h5 class="mb-3 text-muted">{{ solicitacao.cor.nome }}</h5>
+            <img src="{% static 'img/carros' %}/{{ solicitacao.carro.modelo }}/{{ solicitacao.cor.nome }}.png"
+                class="img-fluid" alt="Imagem do {{ solicitacao.carro.modelo }} {{ solicitacao.cor.nome }}">
+        </div>
+
+        <form action="{% url 'portal.consultor.solicitacao.atualizar' solicitacao.id %}" method="post"
+            class="col-md-7 p-4">
+            <div class="row text-start">
+                <div class="col-md-4">
+                    <h3>Solicitante:</h3>
+                </div>
+                <div class="col-md-8">
+                    <h2>{{ solicitacao.usuario.nome }} {{ solicitacao.usuario.sobrenome }}</h2>
+                    <h5 class="text-muted">{{ solicitacao.usuario.email }}</h5>
+                    <h5 class="text-muted">{{ solicitacao.usuario.celular }}</h5>
+                </div>
+            </div>
+
+            <div class="row text-start my-4">
+                <div class="col-md-4">
+                    <h3>Observações:</h3>
+                </div>
+                <div class="col-md-8">
+                    <h5>
+                        {% if solicitacao.observacao %}
+                        {{ solicitacao.observacao }}
+                        {% else %}
+                        Nenhuma observação
+                        {% endif %}
+                    </h5>
+                </div>
+            </div>
+
+
+            <div class="row text-start my-4">
+                <div class="col-md-4">
+                    <h3>Personalizações:</h3>
+                </div>
+                <div class="col-md-8">
+                    {% for personalizacao in personalizacoes %}
+                    <h5>{{ personalizacao }}</h5>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row text-start">
+                <div class="col-md-4">
+                    <h3>Status da Solicitação:</h3>
+                </div>
+                <div class="col-md-8">
+                    <select class="form-select border-0 bg-white px-2 py-3 fs-5" name="status" id="status">
+                        {% for status in solicitacao.STATUS %}
+                        <option value="{{ status.0 }}" {% if solicitacao.status == status.0 %}selected{% endif %}>
+                            {{ status.1 }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end" style="margin-top: 30px;">
+                <button class="btn btn-primary px-3 py-2" type="submit"> Atualizar Solicitação</button>
+                {% if error %}
+                <p class="text-danger">{{ error }}</p>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

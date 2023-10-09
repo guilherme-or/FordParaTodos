@@ -1,0 +1,219 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %}Catálogo{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/detalhe.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- ***********************************COMEÇO SHOPPING CART******************************   -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <div class="d-flex justify-content-start">
+            <a role="button" class="text-reset ms-3 me-4" data-bs-dismiss="offcanvas">
+                <i class="fa-solid fa-arrow-left" style="color: #000000;"></i>
+            </a>
+            <h5 id="offcanvasRightLabel">Voltar para catálogo</h5>
+        </div>
+    </div>
+
+    <div class="offcanvas-body">
+        <p id="shopping-cart-item-count-text">Você ainda não selecionou nenhum item</p>
+
+        <div id="shopping-cart-items"></div>
+
+        <div id="shopping-cart-resume">
+            <hr>
+            <div class="d-flex justify-content-between">
+                <span>Subtotal</span>
+                <span>R$ <span id="subtotal">0,0</span></span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span>Preço do Carro</span>
+                <span>R$ <span id="preco_carro">{{ carro.preco }}</span></span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span>Total</span>
+                <span>R$ <span id="total">{{ carro.preco }}</span></span>
+            </div>
+
+            <button id="shopping-cart-submit" type="button" class="btn btn-primary px-4 py-3 mx-3 my-4">
+                Checkout
+                <i class="fa-solid fa-arrow-right text-light"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- ***************************************FINAL SHOPPING CART*********************************** -->
+
+<form id="form-detalhe" method="get" action="{% url 'portal.checkout' %}">
+    <input type="hidden" name="carro" value="{{ carro.id }}">
+
+    <article class="d-none d-xxl-block">
+        <div style="background-color: #f8f4fc;height: 55px;">
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-primary px-3 py-2 mt-3 mb-5 ms-3" href="{% url 'portal.catalogo' %}">
+                    <i class="fa-solid fa-arrow-left me-2"></i>
+                    Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="pagina">
+            <div class="div__carro__detalhe">
+                <div class="bg">
+                    <img src="{% static 'img/carros' %}/{{ carro.modelo }}/Branco Ártico.png" class="carro carro-img"
+                        alt="Imagem do {{ carro.modelo }}">
+                </div>
+            </div>
+
+            <div class="div__cor__carro">
+                <h4 class="text-muted fw-bold mb-5">Cores Disponíveis</h4>
+                {% for cor in cores %}
+                <div class="form-check form-check-inline mx-2">
+                    <input type="radio" id="{{ cor.nome }}" class="d-none cor__input_radio" name="cor"
+                        value="{{ cor.id }}">
+                    <label class="cor__input_radio__label rounded-circle" for="{{ cor.nome }}"
+                        style="background-color: {{ cor.codigo }};" title="{{ cor.nome }}, {{ cor.codigo }}"
+                        data-image="{% static 'img/carros' %}/{{ carro.modelo }}/{{ cor.nome }}.png"></label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="div__info__carro">
+                <h3 class="fw-bold mb-4">{{ carro.modelo }}</h3>
+                <p>{{ carro.descricao }}</p>
+                <div class="d-flex justify-content-between my-2">
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Motor</b>:
+                        {{ carro.motor }}
+                    </p>
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Potência:</b>
+                        {{ carro.potencia }}
+                    </p>
+                </div>
+                <div class="d-flex justify-content-between my-2">
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Transmissão:</b>
+                        {{ carro.transmissao }}
+                    </p>
+                    <p>
+                        <b style="color:rgb(173, 165, 165)">Outros:</b>
+                        {{ personalizacoes|length }} opções PCD
+                    </p>
+                </div>
+                <h4>Preço sob consulta</h4>
+            </div>
+        </div>
+    </article>
+
+    <!-- **********************INICIO BOTAO CART***************************************** -->
+    <div class="fixed-bottom d-flex justify-content-end align-items-center"
+        style="width: 8%; height: 8%; left: 92%; bottom: 44%; position: fixed;">
+        <button class="btn btn-primary px-3 py-1 my-3 mx-4" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <span id="shopping-cart-item-count">0</span>
+            <i class="fa-solid fa-cart-shopping my-3" style="color: #ffffff;"></i>
+        </button>
+    </div>
+    <!-- **********************FINAL BOTAO CART***************************************** -->
+
+    <article class="d-xxl-none container-fluid bg-light">
+        <a class="btn btn-primary px-3 py-2 my-3" href="{% url 'portal.catalogo' %}">
+            <i class="fa-solid fa-arrow-left me-2"></i>
+            Voltar
+        </a>
+
+        <img src="{% static 'img/carros' %}/{{ carro.modelo }}/Branco Ártico.png" class="w-100 img-fluid my-3 carro-img"
+            alt="Imagem do {{ carro.modelo }}">
+
+        <section class="card border-0 rounded-4">
+            <main class="card-body">
+                <div class="row">
+                    <div class="col-sm-12 mb-3">
+                        <h3 class="fw-bold" id="carroModelo">{{ carro.modelo }}</h3>
+                    </div>
+                    <div class="col-sm-12">
+                        <p>{{ carro.descricao }}</p>
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Motor:</b> {{ carro.motor }}
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Potência:</b> {{ carro.potencia }}
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Transmissão:</b> {{ carro.transmissao }}
+                    </div>
+                    <div class="col-sm-6 mb-2">
+                        <b class="text-muted">Outros:</b> {{ personalizacoes|length }}
+                        opções PCD
+                    </div>
+                    <div class="col-sm-12 mt-2">
+                        <h4>Preço sob consulta</h4>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <section class="w-100 py-3">
+            <h4 class="text-muted fw-bold mx-5 pt-5 pb-2">Cores disponíveis</h4>
+            {% for cor in cores %}
+            <div class="form-check form-check-inline mx-2">
+                <label class="cor__input_radio__label rounded-circle" for="{{ cor.nome }}"
+                    style="background-color: {{ cor.codigo }};" title="{{ cor.nome }}, {{ cor.codigo }}"></label>
+            </div>
+            {% endfor %}
+        </section>
+    </article>
+
+    <main class="container-fluid bg-light">
+        <h4 class="text-muted fw-bold mx-5 pt-5 pb-2">Personalizações Disponíveis</h4>
+
+        <div class="row">
+            {% for personalizacao in personalizacoes %}
+            <div class="card border-0 mx-2 my-2 col-md-3 card_size">
+                <div class="card-body">
+                    <h6 class="card-title fw-bold text-center">{{ personalizacao.nome }}</h6>
+
+                    <div class="div__imagem__detalhe my-1">
+                        <img src="{% static 'img/customizacoes' %}/{{ personalizacao.nome }}.png" class="card-img-top"
+                            alt="Imagem de {{ personalizacao.nome }}">
+                    </div>
+
+                    <p class="card-text">{{ personalizacao.descricao }}</p>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <input type="checkbox" name="personalizacoes" id="{{ personalizacao.nome }}"
+                            data-preco="{{ personalizacao.preco }}" value="{{ personalizacao.id }}"
+                            class="personalizacoes d-none">
+                        <label class="personalizacao__checkbox__label rounded-2" for="{{ personalizacao.nome }}">
+                            <span id="unchecked-{{ personalizacao.nome }}">Adicionar</span>
+                            <i class="fa-solid fa-check d-none" id="checked-{{ personalizacao.nome }}"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-md-12 text-end">
+                <button type="submit" class="btn btn-primary px-4 py-3 mx-3 my-4">
+                    Continuar
+                    <i class="fa-solid fa-arrow-right text-light"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+</form>
+
+
+
+{% endblock %}
+
+{% block scripts%}
+<script src="{% static 'libs/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'libs/jquery.mask.min.js' %}"></script>
+<script src="{% static 'js/portal/detalhe.js' %}"></script>
+{% endblock %}

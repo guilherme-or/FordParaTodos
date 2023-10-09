@@ -1,0 +1,12 @@
+/* .card {
+    width: 651px;
+    height: 350px;
+} */
+
+.bg {
+    height: 100vh;
+    width: 50vw;
+    background-image: url("BG LoginRegistro.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
