@@ -18,4 +18,9 @@ urlpatterns = [
         views.consultor_solicitacao,
         name="portal.consultor.solicitacao",
     ),
+    path(
+        "consultor/solicitacao/atualizar/<int:id_solicitacao>",
+        views.consultor_atualizar_solicitacao,
+        name="portal.consultor.solicitacao.atualizar",
+    ),
 ]

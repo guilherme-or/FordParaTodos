@@ -136,8 +136,7 @@ def agradecimento(request):
     except Exception:
         return redirect("portal.index")
 
-    # TODO: Enviar email para o cliente
-    print("Enviando email...")
+    # TODO: Enviar email de confirmação para o cliente
 
     request.session["id_nova_solicitacao"] = None
     return render(
@@ -279,3 +278,19 @@ def consultor_solicitacao(request, id_solicitacao=0):
             "personalizacoes": solicitacao.personalizacoes.all(),
         },
     )
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def consultor_atualizar_solicitacao(request, id_solicitacao=0):
+    form = request.POST
+    form_status = form.get("status", None)
+
+    solicitacao = get_object_or_404(Solicitacao, pk=id_solicitacao)
+
+    solicitacao.status = form_status
+    solicitacao.save()
+
+    # TODO: Enviar um e-mail com o novo status da solicitação para o cliente
+
+    return redirect("portal.consultor.solicitacao", id_solicitacao=id_solicitacao)
